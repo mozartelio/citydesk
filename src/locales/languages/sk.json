@@ -1,0 +1,20 @@
+{
+  "interface": {
+    "post": "Príspevok",
+    "map": "Mapa",
+    "profile": "Profil"
+
+  },
+  "profile": {
+    "lang": "Jazyk",
+    "en": "Angličtina",
+    "sk": "Slovenčina"
+  },
+  "pap": {
+
+  },
+  "post": {
+
+  }
+
+}

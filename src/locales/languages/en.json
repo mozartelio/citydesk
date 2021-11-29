@@ -1,0 +1,20 @@
+{
+  "interface": {
+    "post": "Post",
+    "map": "Map",
+    "profile": "Profile"
+
+  },
+  "profile": {
+    "lang": "Language",
+    "en": "English",
+    "sk": "Slovakian"
+  },
+  "pap": {
+
+  },
+  "post": {
+
+  }
+
+}
