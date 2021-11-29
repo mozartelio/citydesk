@@ -1,5 +1,5 @@
 # CityDesk
-##Fault notification application
+## Fault notification application
      
 - How it works? For example it could happen that we see broken electrical links which were not fixed for several days. Perhaps company responsible for it even don't knews nothing about this accident. We could make some photos of that links and post it in our app having typed some text, and marked it on the map.
 
