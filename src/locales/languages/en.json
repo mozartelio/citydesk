@@ -2,8 +2,7 @@
   "interface": {
     "post": "Post",
     "map": "Map",
-    "profile": "Profile",
-    "post_overview": "Post overview"
+    "profile": "Profile"
 
   },
   "profile": {
@@ -15,12 +14,14 @@
 
   },
   "post": {
+    "topic": "Breakdown topic",
+    "description": "Breakdown description",
+    "add_photo": "Add a photo",
+    "upload_problem_photo": "Upload or take a photo of a problem",
+    "take_photo": "Take photo",
+    "choose_from_library": "Choose from library",
+    "cancel_photo": "Cancel"
 
-  },
-  "post_overview": {
-    "category": "Category",
-    "author": "Author",
-    "date": "Date"
   }
 
 }
