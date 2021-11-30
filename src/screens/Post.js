@@ -11,7 +11,7 @@ function Post(){
     return(
         <View style={styles.container}>
             <Text>{t('interface:hello')}</Text>
-            <Text>lon: {coord[0]} lat: {coord[1]}</Text>
+            <Text>lat: {coord[0]} lon: {coord[1]}</Text>
         </View>
     )
 }

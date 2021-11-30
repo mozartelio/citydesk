@@ -15,6 +15,7 @@ import Post from "./screens/Post";
 import Map from "./screens/Map";
 import { useTranslation } from "react-i18next";
 import {profile} from "./assets/icons";
+import PostOverview from "./screens/PostOverview";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -47,7 +48,6 @@ function Home({ navigation }){
         }else{
 
             let response = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
-            console.log(response)
             if(response==='granted')
                 await Geolocation.getCurrentPosition(
                     position => {
@@ -87,6 +87,15 @@ function Home({ navigation }){
                 component={Map}
                 options={{
                     title: t('interface:map'),
+                    headerRight: () => (
+                        <View style={{flexDirection: 'row', alignItems: 'center',}}>
+                            <Pressable  name="search" size={28} color="black" style={{padding: 10}} onPress={() => navigation.navigate("Profile")}>
+                                <Image
+                                    source={profile}
+                                    style={styles.icon}/>
+                            </Pressable>
+                        </View>
+                    )
                 }}/>
         </Tab.Navigator>
     );
@@ -102,7 +111,8 @@ function App (){
             <Stack.Screen name="Home" component={Home} options={{
               headerShown: false,
             }} />
-            <Stack.Screen name="Profile" component={Profile} options={{ title: t('interface:profile') }}/>
+              <Stack.Screen name="Profile" component={Profile} options={{ title: t('interface:profile') }}/>
+              <Stack.Screen name="PostOverview" component={PostOverview}/>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

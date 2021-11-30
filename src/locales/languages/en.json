@@ -2,7 +2,8 @@
   "interface": {
     "post": "Post",
     "map": "Map",
-    "profile": "Profile"
+    "profile": "Profile",
+    "post_overview": "Post overview"
 
   },
   "profile": {
@@ -15,6 +16,11 @@
   },
   "post": {
 
+  },
+  "post_overview": {
+    "category": "Category",
+    "author": "Author",
+    "date": "Date"
   }
 
 }
