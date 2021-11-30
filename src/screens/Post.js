@@ -1,44 +1,24 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Text, View, StyleSheet, TextInput, FlatList, TouchableOpacity} from "react-native";
 import {useTranslation} from "react-i18next";
-import {useSelector} from "react-redux";
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
 import Icon from "react-native-vector-icons/Ionicons";
 import ImagePicker from 'react-native-image-crop-picker';
-import {useTheme} from "@react-navigation/native";
+import {actionLanguage} from "../redux/actionCreator";
+import i18n from "i18next";
+import {Picker} from "@react-native-picker/picker";
+import {useSelector} from "react-redux";
 
 
 function Post(){
     const {t} = useTranslation()
 
-    const coord = useSelector((state)=> state.coord);
-    const [height, setHeight] = useState(1);
-    const [usedLines, setUsedLines] = useState(1);
-    // const [images,setImages
-
-    function _onLayout(e) {
-        console.log('e', e.nativeEvent.layout.height);
-        // the height increased therefore we also increase the usedLine counter
-        if (height < e.nativeEvent.layout.height) {
-            setUsedLines(usedLines + 1);
-        }
-        // the height decreased, we subtract a line from the line counter
-        if (height > e.nativeEvent.layout.height) {
-            setUsedLines(usedLines - 1);
-        }
-        // update height if necessary
-        if (height !== e.nativeEvent.layout.height) {
-            setHeight(e.nativeEvent.layout.height);
-        }
-    }
-
-    const [image, setImage] = useState('https://api.adorable.io/avatars/80/abott@adorable.png');
-    const {colors} = useTheme();
-    let bs;
-    bs = React.createRef();
-    let fall;
-    fall = new Animated.Value(1);
+    const [image, setImage] = useState(null);
+    const [bs, setBs] = useState(React.createRef())
+    const fall = new Animated.Value(1);
+    const [responsible, setResponsible] = useState(null)
+    const userId = useSelector((state)=> state.userId);
 
     const takePhotoFromCamera = () => {
         ImagePicker.openCamera({
@@ -70,16 +50,20 @@ function Post(){
 
     const renderInner = () => (
         <View style={styles.panel}>
+
             <View style={{alignItems: 'center'}}>
                 <Text style={styles.panelTitle}>{t('post:add_photo')}</Text>
                 <Text style={styles.panelSubtitle}>{t('post:upload_problem_photo')}</Text>
             </View>
+
             <TouchableOpacity style={styles.panelButton} onPress={takePhotoFromCamera}>
                 <Text style={styles.panelButtonTitle}>{t('post:take_photo')}</Text>
             </TouchableOpacity>
+
             <TouchableOpacity style={styles.panelButton} onPress={choosePhotoFromLibrary}>
                 <Text style={styles.panelButtonTitle}>{t('post:choose_from_library')}</Text>
             </TouchableOpacity>
+
             <TouchableOpacity
                 style={styles.panelButton}
                 onPress={() => bs.current.snapTo(1)}>
@@ -90,9 +74,7 @@ function Post(){
 
     const renderHeader = () => (
         <View style={styles.header}>
-            <View style={styles.panelHeader}>
-                <View style={styles.panelHandle} />
-            </View>
+
         </View>
     );
 
@@ -104,14 +86,7 @@ function Post(){
                 <TextInput
                     placeholder={t('post:topic')}
                     multiline={true}
-                    onLayout={(e) => _onLayout(e)}
-                    // numberOfLines={usedLines}
-                    // onChangeText={
-                    //     (text)=>
-                    //     {
-                    //         if(text.length===0)setUsedLines(1);
-                    //     }
-                    // }
+                    maxLength={22}
                     style={styles.topicInput}
                 >
                 </TextInput>
@@ -119,27 +94,42 @@ function Post(){
                 <TextInput
                     placeholder={t('post:description')}
                     multiline={true}
+                    numberOfLines={10}
+                    maxLength={500}
                     style={styles.descriptionInput}
                 >
                 </TextInput>
+
+                <Picker
+                    style={{ width: "100%" }}
+
+                    onValueChange={(val) => {
+                        setResponsible(val)
+                    }}
+                >
+                    <Picker.Item value='' label={`${t('post:choose_responsible')}`} />
+                    <Picker.Item label={'one'} value="en" />
+                    <Picker.Item label={'two'} value="sk" />
+                </Picker>
+
                 <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
-                    <Icon name="image" size={30} color="#4b524b" />
+                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end'}}>
+                        <Text style={{fontSize: 18}}>{t('post:att_image')} </Text>
+                        <Icon name="image" size={30} color="#4b524b" />
+                    </View>
                 </TouchableOpacity>
 
             </View>
             <BottomSheet
-                    ref={bs}
-                    snapPoints={[330, 0]}
-                    renderContent={renderInner}
-                    renderHeader={renderHeader}
-                    initialSnap={1}
-                    callbackNode={fall}
-                    enabledGestureInteraction={true}
-                />
-
-                {/*<Text>{t('interface:helloaaa')}</Text>*/}
-                {/*<Text>lon: {coord[0]} lat: {coord[1]}</Text>*/}
-            </View>
+                ref={bs}
+                snapPoints={[330, 0]}
+                renderContent={renderInner}
+                renderHeader={renderHeader}
+                initialSnap={1}
+                callbackNode={fall}
+                enabledGestureInteraction={true}
+            />
+        </View>
 
 
     )
@@ -152,7 +142,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         // alignItems: 'center',
         // justifyContent: 'center',
-        // width:'80%',
+        width:'100%',
         height:'100%',
         padding:30
     },
@@ -169,8 +159,9 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
     },
     descriptionInput:{
-        height: 60,
         fontSize:18,
+        height: 200,
+        borderBottomWidth: 2,
         fontWeight:'normal',
         color:'black',
         marginVertical:10
@@ -199,20 +190,9 @@ const styles = StyleSheet.create({
         shadowOffset: {width: -1, height: -3},
         shadowRadius: 2,
         shadowOpacity: 0.4,
-        // elevation: 5,
         paddingTop: 20,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-    },
-    panelHeader: {
-        alignItems: 'center',
-    },
-    panelHandle: {
-        width: 40,
-        height: 8,
-        borderRadius: 4,
-        backgroundColor: '#00000040',
-        marginBottom: 10,
     },
     panelTitle: {
         fontSize: 27,
@@ -227,7 +207,7 @@ const styles = StyleSheet.create({
     panelButton: {
         padding: 13,
         borderRadius: 10,
-        backgroundColor: '#76b2de',
+        backgroundColor: '#010101',
         alignItems: 'center',
         marginVertical: 7,
     },

@@ -1,3 +1,3 @@
 const profile = require('./img/profile.png')
-
-export {profile}
+const google = require('./img/google.jpg')
+export {profile, google}

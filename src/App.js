@@ -16,6 +16,7 @@ import Map from "./screens/Map";
 import { useTranslation } from "react-i18next";
 import {profile} from "./assets/icons";
 import PostOverview from "./screens/PostOverview";
+import Authorization from "./screens/Authorization";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,6 +24,7 @@ const Tab = createBottomTabNavigator();
 function Home({ navigation }){
     const {t} = useTranslation();
     const dispatch = useDispatch();
+    const auth = useSelector((state)=> state.auth);
 
     useEffect( () => {
         requestLocationPermission();
@@ -33,6 +35,8 @@ function Home({ navigation }){
             requestLocationPermission();
         }, 30000);
     }, [])
+
+
 
 
     const requestLocationPermission = async()=>{
@@ -108,11 +112,12 @@ function App (){
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} options={{
+              <Stack.Screen name="Authorization" component={Authorization} options={{ title: 'Authorization' }}/>
+              <Stack.Screen name="Home" component={Home} options={{
               headerShown: false,
             }} />
               <Stack.Screen name="Profile" component={Profile} options={{ title: t('interface:profile') }}/>
-              <Stack.Screen name="PostOverview" component={PostOverview}/>
+              <Stack.Screen name="PostOverview" component={PostOverview} options={{ title: t('interface:post_overview') }}/>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

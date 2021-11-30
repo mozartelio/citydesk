@@ -1,4 +1,4 @@
-import {LANGUAGE, COORD} from '../actions';
+import {LANGUAGE, COORD, AUTH, USER_ID} from '../actions';
 
 function actionLanguage(lang) {
     return {
@@ -14,5 +14,20 @@ function actionCoord(coord){
     }
 }
 
+function actionAuth(user, status) {
+    return {
+        type: AUTH,
+        user: user,
+        status: status
+    };
+}
 
-export { actionLanguage, actionCoord};
+function actionUserId(id){
+    return{
+        type: USER_ID,
+        id: id
+    }
+}
+
+
+export { actionLanguage, actionCoord, actionAuth, actionUserId};

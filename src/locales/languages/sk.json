@@ -2,7 +2,8 @@
   "interface": {
     "post": "Príspevok",
     "map": "Mapa",
-    "profile": "Profil"
+    "profile": "Profil",
+    "post_overview": "Prehľad príspevku"
 
   },
   "profile": {
@@ -10,17 +11,23 @@
     "en": "Angličtina",
     "sk": "Slovenčina"
   },
-  "pap": {
+  "map": {
 
   },
   "post": {
-    "topic": "Téma poruchy",
-    "description": "Popis poruchy",
+    "topic": "Názov",
+    "description": "Popis",
     "add_photo": "Pridať foto",
     "upload_problem_photo": "Nahrajte alebo urobte foto poruchy",
     "take_photo": "Urobiť foto",
     "choose_from_library": "Vybrať z galérie",
-    "cancel_photo": "Zrušiť"
+    "cancel_photo": "Zrušiť",
+    "att_image": "Pridajte obrázok",
+    "choose_responsible": "Vyberte zodpovedneho"
+  },
+  "post_overview": {
+    "author": "Autor",
+    "date": "Dátum"
   }
 
 }

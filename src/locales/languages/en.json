@@ -2,7 +2,8 @@
   "interface": {
     "post": "Post",
     "map": "Map",
-    "profile": "Profile"
+    "profile": "Profile",
+    "post_overview": "Post Overview"
 
   },
   "profile": {
@@ -10,18 +11,23 @@
     "en": "English",
     "sk": "Slovakian"
   },
-  "pap": {
+  "map": {
 
   },
   "post": {
-    "topic": "Breakdown topic",
-    "description": "Breakdown description",
+    "topic": "Title",
+    "description": "Description",
     "add_photo": "Add a photo",
     "upload_problem_photo": "Upload or take a photo of a problem",
     "take_photo": "Take photo",
     "choose_from_library": "Choose from library",
-    "cancel_photo": "Cancel"
-
+    "cancel_photo": "Cancel",
+    "att_image": "Attach image",
+    "choose_responsible": "Choose responsible"
+  },
+  "post_overview": {
+    "author": "Author",
+    "date": "Date"
   }
 
 }
