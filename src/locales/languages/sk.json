@@ -14,7 +14,13 @@
 
   },
   "post": {
-
+    "topic": "Téma poruchy",
+    "description": "Popis poruchy",
+    "add_photo": "Pridať foto",
+    "upload_problem_photo": "Nahrajte alebo urobte foto poruchy",
+    "take_photo": "Urobiť foto",
+    "choose_from_library": "Vybrať z galérie",
+    "cancel_photo": "Zrušiť"
   }
 
 }
