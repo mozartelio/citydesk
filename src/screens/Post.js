@@ -123,7 +123,7 @@ function Post({navigation}){
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    title: 'title',
+                    title: title,
                     context: context,
                     authorId: userId,
                     photoURL: postImageUrl,
