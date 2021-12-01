@@ -31,7 +31,7 @@ function Profile({navigation}){
 
             <Text>{t('profile:lang')}:</Text>
             <Picker
-                style={{ width: "100%" }}
+                style={{ width: "100%", pickerStyleType: 'none'}}
                 selectedValue={lang}
                 onValueChange={(val) => {
                     dispatch(actionLanguage(val))
