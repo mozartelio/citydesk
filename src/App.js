@@ -19,6 +19,7 @@ import PostOverview from "./screens/PostOverview";
 import Authorization from "./screens/Authorization";
 import PostOnMap from "./screens/PostOnMap";
 import {Picker} from "@react-native-picker/picker";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -93,31 +94,7 @@ function Home({ navigation }){
                 component={Map}
                 options={{
                     title: t('interface:map'),
-                    headerRight: () => (
-                        <View style={{flexDirection: 'row', alignItems: 'center',}}>
-                            <Pressable  name="search" size={28} color="black" style={{paddingLeft: 10}}>
-                                <Image
-                                    source={filters}
-                                    style={styles.icon}/>
-                            </Pressable>
-                            <Picker
-                                style={{width: '60%'}}
-                                selectedValue={filter}
-                                onValueChange={(val) => {
-                                    dispatch(actionFilter(val))
-                                    console.log('val',val)
-                                }}
-                            >
-                                <Picker.Item label={'Unsolved problems'} value="unsolved" />
-                                <Picker.Item label={'Solved problems'} value="solved" />
-                            </Picker>
-                            <Pressable  name="search" size={28} color="black" style={{padding: 10}} onPress={() => navigation.navigate("Profile")}>
-                                <Image
-                                    source={profile}
-                                    style={styles.icon}/>
-                            </Pressable>
-                        </View>
-                    )
+                    headerShown: false,
                 }}/>
         </Tab.Navigator>
     );

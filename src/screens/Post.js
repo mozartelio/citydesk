@@ -191,18 +191,23 @@ function Post({navigation}){
                 </Picker>
 
                 <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
-                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end'}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end', marginTop: 20}}>
                         <Text style={{fontSize: 18}}>{image==null ? t('post:att_image') : 'Image was added'} </Text>
                         <Icon name="image" size={30} color="#4b524b" />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('PostOnMap')}>
-                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end'}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end', marginTop: 20}}>
                         <Text style={{fontSize: 18}}>lat: {postCoord!=null ? postCoord[0] : coord[0]}{'\n'}lon: {postCoord!=null  ? postCoord[1] : coord[1]} </Text>
                         <Icon name="location" size={30} color="#4b524b" />
                     </View>
                 </TouchableOpacity>
-                <Button title={'Post'} onPress={()=>post()}/>
+
+                <TouchableOpacity style={{...styles.panelButton, marginTop: 30}} onPress={() => post()}>
+                    <Text style={styles.panelButtonTitle}>Post</Text>
+                </TouchableOpacity>
+
+
             </View>
             <BottomSheet
                 ref={bs}

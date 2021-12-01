@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Text, View, StyleSheet, Image, Dimensions} from "react-native";
+import {Text, View, StyleSheet, Image, Dimensions, TouchableOpacity} from "react-native";
 import {useTranslation} from "react-i18next";
 import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Carousel from 'react-native-snap-carousel'
@@ -71,10 +71,10 @@ function Map({navigation}){
 
 
         const GET_UNSLOVED_PROBLEMS = 'https://hackathon-citydesk.herokuapp.com/';
-        // console.log('---',filter)
+        console.log('---',filter)
         let list = null;
         try {
-            const response = await fetch(filter == 'unsolved' ? GET_UNSLOVED_PROBLEMS+'getAllUnsolvedProblems' : GET_UNSLOVED_PROBLEMS + 'getAllSolvedProblems');
+            const response = await fetch(filter  ? GET_UNSLOVED_PROBLEMS+'getAllUnsolvedProblems' : GET_UNSLOVED_PROBLEMS + 'getAllSolvedProblems');
             if(response.status === 200 ) {
                 list = await response.json();
                 list.map(async (item, index) =>{
