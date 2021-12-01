@@ -9,15 +9,16 @@ import {PERMISSIONS, request} from "react-native-permissions";
 import Geolocation from '@react-native-community/geolocation';
 import './i18njs'
 import {Image, Platform} from "react-native";
-import {actionCoord} from "./redux/actionCreator";
+import {actionCoord, actionFilter} from "./redux/actionCreator";
 import Profile from "./screens/Profile";
 import Post from "./screens/Post";
 import Map from "./screens/Map";
 import { useTranslation } from "react-i18next";
-import {profile} from "./assets/icons";
+import {filters, profile} from "./assets/icons";
 import PostOverview from "./screens/PostOverview";
 import Authorization from "./screens/Authorization";
 import PostOnMap from "./screens/PostOnMap";
+import {Picker} from "@react-native-picker/picker";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,7 +26,7 @@ const Tab = createBottomTabNavigator();
 function Home({ navigation }){
     const {t} = useTranslation();
     const dispatch = useDispatch();
-    const auth = useSelector((state)=> state.auth);
+    const filter = useSelector((state)=> state.filter);
 
     useEffect( () => {
         requestLocationPermission();
@@ -94,6 +95,22 @@ function Home({ navigation }){
                     title: t('interface:map'),
                     headerRight: () => (
                         <View style={{flexDirection: 'row', alignItems: 'center',}}>
+                            <Pressable  name="search" size={28} color="black" style={{paddingLeft: 10}}>
+                                <Image
+                                    source={filters}
+                                    style={styles.icon}/>
+                            </Pressable>
+                            <Picker
+                                style={{width: '60%'}}
+                                selectedValue={filter}
+                                onValueChange={(val) => {
+                                    dispatch(actionFilter(val))
+                                    console.log('val',val)
+                                }}
+                            >
+                                <Picker.Item label={'Unsolved problems'} value="unsolved" />
+                                <Picker.Item label={'Solved problems'} value="solved" />
+                            </Picker>
                             <Pressable  name="search" size={28} color="black" style={{padding: 10}} onPress={() => navigation.navigate("Profile")}>
                                 <Image
                                     source={profile}

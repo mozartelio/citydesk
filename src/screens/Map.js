@@ -7,28 +7,30 @@ import {useSelector} from "react-redux";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 
+
 function Map({navigation}){
     const {t} = useTranslation();
     const coord = useSelector((state)=> state.coord);
-    const [data, setData] = useState({ list: [], markers: [] })
-    const [carousel, setCarousel] = useState(null)
-    const [map, setMap] = useState(null)
+    const [data, setData] = useState({ list: [], markers: [] });
+    const [carousel, setCarousel] = useState(null);
+    const filter = useSelector((state)=> state.filter);
+    const [map, setMap] = useState(null);
     const [state, setState] = useState({
         initialPosition: {
             latitude: coord[0],
             longitude: coord[1],
             latitudeDelta: 0.09,
             longitudeDelta: 0.09,
-        }})
+        }});
 
     useEffect( () => {
-        getData();
+        updateData();
     }, []);
 
     useEffect(() => {
         setInterval(() => {
-            getData();
-        }, 30000);
+            updateData();
+        }, 5000);
     }, [])
 
     const onMarkerPress = (item, index) => {
@@ -65,19 +67,24 @@ function Map({navigation}){
         )
     }
 
-    const getData = async function () {
-        const GET_UNSLOVED_PROBLEMS = 'https://hackathon-citydesk.herokuapp.com/getAllUnsolvedProblems';
+    async function updateData() {
 
+
+        const GET_UNSLOVED_PROBLEMS = 'https://hackathon-citydesk.herokuapp.com/';
+        // console.log('---',filter)
         let list = null;
         try {
-            const response = await fetch(GET_UNSLOVED_PROBLEMS);
+            const response = await fetch(filter == 'unsolved' ? GET_UNSLOVED_PROBLEMS+'getAllUnsolvedProblems' : GET_UNSLOVED_PROBLEMS + 'getAllSolvedProblems');
             if(response.status === 200 ) {
                 list = await response.json();
                 list.map(async (item, index) =>{
                     const user_response = await fetch(`https://hackathon-citydesk.herokuapp.com/getUser/${item.authorID}`);
-                    if(user_response.status === 200) {
+                    const org_response = await fetch(`https://hackathon-citydesk.herokuapp.com/getOrganization/${item.responsibleOrganizations[0]}`);
+                    if(user_response.status === 200 && org_response.status == 200) {
                         let user = await user_response.json();
+                        let org = await org_response.json();
                         list[index].name = user.name
+                        list[index].organization = org.name
                     }else{
                         list[index].name = '';
                     }
@@ -95,6 +102,7 @@ function Map({navigation}){
 
     return(
         <View style={styles.container}>
+
             <MapView
                 provider={PROVIDER_GOOGLE}
                 style={styles.map}
@@ -120,8 +128,6 @@ function Map({navigation}){
                         </Marker>
                     ))
                 }
-
-
             </MapView>
 
             <Carousel
@@ -176,6 +182,11 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 16,
         alignSelf: "center"
+    },icon: {
+        aspectRatio: 1,
+        width: 25,
+        height: 25,
+        alignSelf: 'flex-end'
     }
 });
 

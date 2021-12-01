@@ -11,7 +11,7 @@ function PostOverview({route}){
             <Image style={styles.image} source={{uri: `${item.photoURL}`}}/>
             <Text style={styles.header}>{item.title}</Text>
             <Text style={styles.text}>{item.context}</Text>
-            {/*<Text style={styles.extraInfo}>{t('post_overview:category')}: {item.category}</Text>*/}
+            <Text style={styles.extraInfo}>{t('post_overview:category')}: {item.organization}</Text>
             <Text style={styles.extraInfo}>{t('post_overview:author')}: {item.name}</Text>
             <Text style={styles.extraInfo}>{t('post_overview:date')}: {item.createdAt.substr(0,10)}</Text>
 

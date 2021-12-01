@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {StyleSheet, View, Text, Pressable, Image} from "react-native";
+import {StyleSheet, View, Text, Pressable, Image, Dimensions} from "react-native";
 import {useDispatch} from "react-redux";
 import Loading from "../components/Loading";
 import {actionAuth, actionUserId} from "../redux/actionCreator";
 import {google} from "../assets/icons";
 import {GoogleSignin} from "@react-native-google-signin/google-signin";
 import auth from "@react-native-firebase/auth";
-
+import {logo} from './../assets/logo'
 
 const WEB_CLIENT_ID = '112151857904-5carn3lk9vms7mb2cdaqa7rbpjehl68r.apps.googleusercontent.com';
 const SERVER= 'https://hackathon-citydesk.herokuapp.com/';
@@ -82,7 +82,8 @@ function Authorization({navigation}) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}>Welcome to CityDesk</Text>
+            <Image source={logo} style={styles.logo}/>
+            {/*<Text style={styles.heading}>Welcome to CityDesk</Text>*/}
             <Pressable style={styles.logIn} onPress={logIn}>
                 <Text style={styles.logInText}>Log In with Google</Text>
                 <Image source={google} style={styles.googleIcon}/>
@@ -109,9 +110,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         elevation: 8,
         padding: 20,
+        marginBottom: 100,
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 10
+        borderRadius: 10,
+        bottom: 0,
+        position: 'absolute',
     },
     logInText: {
         color: "#000",
@@ -122,6 +126,10 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         alignSelf: "center"
+    },logo: {
+        width: 450,
+        height:  450,
+        marginBottom: 100
     }
 });
 

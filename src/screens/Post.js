@@ -157,7 +157,7 @@ function Post({navigation}){
                     onChangeText={text => setTitle(text)}
                     placeholder={t('post:topic')}
                     multiline={true}
-                    maxLength={22}
+                    maxLength={35}
                     style={styles.topicInput}
                 >
                 </TextInput>
