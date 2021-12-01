@@ -1,6 +1,7 @@
 {
   "interface": {
     "post": "Post",
+    "all_post": "List",
     "map": "Map",
     "profile": "Profile",
     "post_overview": "Post Overview",
