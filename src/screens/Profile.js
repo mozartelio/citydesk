@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import {useSelector, useDispatch} from "react-redux";
 import {actionLanguage} from "../redux/actionCreator";
 import auth from "@react-native-firebase/auth";
+import {GoogleSignin} from "@react-native-google-signin/google-signin";
 
 function Profile({navigation}){
     const {t} = useTranslation();
@@ -17,16 +18,17 @@ function Profile({navigation}){
     console.log('userId',userId)
     function logOut() {
         auth().signOut().then(r => r)
+        GoogleSignin.revokeAccess();
         navigation.navigate('Authorization')
     }
     console.log(user)
     return(
         <View style={styles.container}>
-            <Image source={{uri: `${user.photoURL}`}} style={styles.avatar}/>
+            <Image source={{uri: `${user ? user.photoURL : ''}`}} style={styles.avatar}/>
 
-            <Text style={{fontSize: 32, }}>{ user.displayName }</Text>
-            <Text>UID: {userId.toString()}</Text>
-            <Text style={{fontSize: 22, margin: 20, marginBottom: 50}}>{ user.email }</Text>
+            <Text style={{fontSize: 32, }}>{ user ? user.displayName : '' }</Text>
+            <Text>UID: {userId ? userId.toString() : ''}</Text>
+            <Text style={{fontSize: 22, margin: 20, marginBottom: 50}}>{ user ? user.email : '' }</Text>
 
             <Pressable style={styles.logIn} onPress={logOut}>
                 <Text style={styles.logInText}>Log Out</Text>

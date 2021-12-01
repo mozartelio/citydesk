@@ -1,3 +1,3 @@
-import {actionLanguage, actionCoord, actionAuth, actionUserId} from "./settings";
+import {actionLanguage, actionCoord, actionAuth, actionUserId, actionPostCoord} from "./settings";
 
-export  {actionLanguage, actionCoord, actionAuth, actionUserId};
+export  {actionLanguage, actionCoord, actionAuth, actionUserId, actionPostCoord};

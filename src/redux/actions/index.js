@@ -1,6 +1,7 @@
 const LANGUAGE = 'LANGUAGE';
 const COORD = 'COORD';
-const AUTH = 'AUTH'
-const USER_ID = 'USER_ID'
+const AUTH = 'AUTH';
+const USER_ID = 'USER_ID';
+const POST_COORD = 'POST_COORD';
 
-export  {LANGUAGE, COORD, AUTH, USER_ID}
+export  {LANGUAGE, COORD, AUTH, USER_ID, POST_COORD}

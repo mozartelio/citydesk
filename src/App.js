@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import {profile} from "./assets/icons";
 import PostOverview from "./screens/PostOverview";
 import Authorization from "./screens/Authorization";
+import PostOnMap from "./screens/PostOnMap";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -118,6 +119,7 @@ function App (){
             }} />
               <Stack.Screen name="Profile" component={Profile} options={{ title: t('interface:profile') }}/>
               <Stack.Screen name="PostOverview" component={PostOverview} options={{ title: t('interface:post_overview') }}/>
+              <Stack.Screen name="PostOnMap" component={PostOnMap} options={{ title: 'PostOnMap' }}/>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

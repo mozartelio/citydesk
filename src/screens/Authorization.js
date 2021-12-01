@@ -7,26 +7,30 @@ import {google} from "../assets/icons";
 import {GoogleSignin} from "@react-native-google-signin/google-signin";
 import auth from "@react-native-firebase/auth";
 
+
 const WEB_CLIENT_ID = '112151857904-5carn3lk9vms7mb2cdaqa7rbpjehl68r.apps.googleusercontent.com';
 const SERVER= 'https://hackathon-citydesk.herokuapp.com/';
+
 
 GoogleSignin.configure({
     webClientId: WEB_CLIENT_ID,
 });
 
+
 function Authorization({navigation}) {
     const [initializing, setInitializing] = useState(true);
     const [user, setUser] = useState();
     const dispatch = useDispatch();
-    const [uid, setUid] = useState(null);
 
     useEffect(() => onAuthStateChanged(async user => {
         setInitializing(true);
-        let status = await authUser(user);
+        let response = await authUser(user);
 
-        if(status === 200 || !user) {
+
+        // console.log('useEffect', response.status, response.id)
+        if( !user || response.status === 200) {
             dispatch(actionAuth(user));
-            dispatch(actionUserId(uid));
+            dispatch(actionUserId(response ? response.id : null));
             setUser(user);
             if (initializing) setInitializing(false);
         }
@@ -38,7 +42,12 @@ function Authorization({navigation}) {
 
 
     async function authUser(user) {
-        if(!user) return;
+        console.log('authUser')
+        if(!user) {
+            console.log('cant get user')
+            return null;
+        }
+
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -49,10 +58,13 @@ function Authorization({navigation}) {
                 photoURL: user.photoURL
             })
         };
+        console.log('data', requestOptions)
         let response = await fetch(`${SERVER}signIn`, requestOptions);
+        console.log('response:', response.status);
         let r = await response.json()
-        setUid(r.id)
-        return response.status;
+
+        console.log('response:', response ,r);
+        return {status: response.status, id: r.id};
 
     }
 
@@ -78,15 +90,6 @@ function Authorization({navigation}) {
         </View>
     );
 
-
-    // return (
-    //     <View style={styles.container}>
-    //         <Text>Welcome {user.email}</Text>
-    //         <Pressable style={styles.logIn} onPress={logOut}>
-    //             <Text style={styles.logInText}>Log Out</Text>
-    //         </Pressable>
-    //     </View>
-    // );
 }
 
 const styles = StyleSheet.create({
