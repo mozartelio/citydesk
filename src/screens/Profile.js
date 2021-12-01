@@ -30,10 +30,6 @@ function Profile({navigation}){
             <Text>UID: {userId ? userId.toString() : ''}</Text>
             <Text style={{fontSize: 22, margin: 20, marginBottom: 50}}>{ user ? user.email : '' }</Text>
 
-            <Pressable style={styles.logIn} onPress={logOut}>
-                <Text style={styles.logInText}>Log Out</Text>
-            </Pressable>
-
             <Text>{t('profile:lang')}:</Text>
             <Picker
                 style={{ width: "100%" }}
@@ -48,7 +44,7 @@ function Profile({navigation}){
             </Picker>
 
             <Pressable style={styles.logIn} onPress={logOut}>
-                <Text style={styles.logInText}>Log Out</Text>
+                <Text style={styles.logInText}>{t('profile:log_out')}</Text>
             </Pressable>
         </View>
     )

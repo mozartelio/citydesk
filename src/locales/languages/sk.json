@@ -9,7 +9,8 @@
   "profile": {
     "lang": "Jazyk",
     "en": "Angličtina",
-    "sk": "Slovenčina"
+    "sk": "Slovenčina",
+    "log_out": "Východ"
   },
   "map": {
 
@@ -28,6 +29,11 @@
   "post_overview": {
     "author": "Autor",
     "date": "Dátum"
+  },
+  "authorization": {
+    "auth": "Autorizácia",
+    "welcome": "Vitajte v CityDesk",
+    "login": "Prihláste sa"
   }
 
 }

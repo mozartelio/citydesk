@@ -113,7 +113,7 @@ function App (){
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator>
-              <Stack.Screen name="Authorization" component={Authorization} options={{ title: 'Authorization' }}/>
+              <Stack.Screen name="Authorization" component={Authorization} options={{ title: t("authorization:auth") }}/>
               <Stack.Screen name="Home" component={Home} options={{
               headerShown: false,
             }} />
