@@ -130,13 +130,13 @@ function App (){
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator>
-              <Stack.Screen name="Authorization" component={Authorization} options={{ title: 'Authorization' }}/>
+              <Stack.Screen name="Authorization" component={Authorization} options={{ title: t("authorization:auth") }}/>
               <Stack.Screen name="Home" component={Home} options={{
               headerShown: false,
             }} />
               <Stack.Screen name="Profile" component={Profile} options={{ title: t('interface:profile') }}/>
               <Stack.Screen name="PostOverview" component={PostOverview} options={{ title: t('interface:post_overview') }}/>
-              <Stack.Screen name="PostOnMap" component={PostOnMap} options={{ title: 'PostOnMap' }}/>
+              <Stack.Screen name="PostOnMap" component={PostOnMap} options={{ title: t('interface:location') }}/>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

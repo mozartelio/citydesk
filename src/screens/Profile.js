@@ -40,10 +40,11 @@ function Profile({navigation}){
             >
                 <Picker.Item label={t('profile:en')} value="en" />
                 <Picker.Item label={t('profile:sk')} value="sk" />
+                <Picker.Item label={t('profile:uk')} vallue="uk" />
             </Picker>
 
             <Pressable style={styles.logIn} onPress={logOut}>
-                <Text style={styles.logInText}>Log Out</Text>
+                <Text style={styles.logInText}>{t('profile:log_out')}</Text>
             </Pressable>
         </View>
     )

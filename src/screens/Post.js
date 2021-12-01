@@ -74,7 +74,7 @@ function Post({navigation}){
             <TouchableOpacity
                 style={styles.panelButton}
                 onPress={() => bs.current.snapTo(1)}>
-                <Text style={styles.panelButtonTitle}>Cancel</Text>
+                <Text style={styles.panelButtonTitle}>{t('post:cancel_photo')}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -123,7 +123,7 @@ function Post({navigation}){
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    title: 'title',
+                    title: title,
                     context: context,
                     authorId: userId,
                     photoURL: postImageUrl,

@@ -6,7 +6,9 @@ import {actionAuth, actionUserId} from "../redux/actionCreator";
 import {google} from "../assets/icons";
 import {GoogleSignin} from "@react-native-google-signin/google-signin";
 import auth from "@react-native-firebase/auth";
+
 import {logo} from './../assets/logo'
+import {useTranslation} from "react-i18next";
 
 const WEB_CLIENT_ID = '112151857904-5carn3lk9vms7mb2cdaqa7rbpjehl68r.apps.googleusercontent.com';
 const SERVER= 'https://hackathon-citydesk.herokuapp.com/';
@@ -21,6 +23,7 @@ function Authorization({navigation}) {
     const [initializing, setInitializing] = useState(true);
     const [user, setUser] = useState();
     const dispatch = useDispatch();
+    const {t} = useTranslation();
 
     useEffect(() => onAuthStateChanged(async user => {
         setInitializing(true);
@@ -83,9 +86,9 @@ function Authorization({navigation}) {
     return (
         <View style={styles.container}>
             <Image source={logo} style={styles.logo}/>
-            {/*<Text style={styles.heading}>Welcome to CityDesk</Text>*/}
+            
             <Pressable style={styles.logIn} onPress={logIn}>
-                <Text style={styles.logInText}>Log In with Google</Text>
+                <Text style={styles.logInText}>{t("authorization:login")}</Text>
                 <Image source={google} style={styles.googleIcon}/>
             </Pressable>
         </View>
