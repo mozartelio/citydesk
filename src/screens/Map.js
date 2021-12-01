@@ -82,6 +82,7 @@ function Map({navigation}){
                         list[index].name = '';
                     }
                 })
+
             }else
                 list = [];
         } catch (error) {
