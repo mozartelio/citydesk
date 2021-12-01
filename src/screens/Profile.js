@@ -31,7 +31,7 @@ function Profile({navigation}){
 
             <Text>{t('profile:lang')}:</Text>
             <Picker
-                style={{ width: "100%" }}
+                style={{ width: "100%", pickerStyleType: 'none'}}
                 selectedValue={lang}
                 onValueChange={(val) => {
                     dispatch(actionLanguage(val))
@@ -40,7 +40,7 @@ function Profile({navigation}){
             >
                 <Picker.Item label={t('profile:en')} value="en" />
                 <Picker.Item label={t('profile:sk')} value="sk" />
-                <Picker.Item label={t('profile:uk')} vallue="uk" />
+                <Picker.Item label={t('profile:uk')} value="uk" />
             </Picker>
 
             <Pressable style={styles.logIn} onPress={logOut}>
