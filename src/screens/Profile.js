@@ -15,13 +15,12 @@ function Profile({navigation}){
     const user = useSelector((state)=> state.auth.user);
     const userId = useSelector((state)=> state.userId);
 
-    console.log('userId',userId)
     function logOut() {
         auth().signOut().then(r => r)
         GoogleSignin.revokeAccess();
         navigation.navigate('Authorization')
     }
-    console.log(user)
+
     return(
         <View style={styles.container}>
             <Image source={{uri: `${user ? user.photoURL : ''}`}} style={styles.avatar}/>

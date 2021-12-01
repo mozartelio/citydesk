@@ -1,4 +1,4 @@
-import {LANGUAGE, COORD, AUTH, USER_ID, POST_COORD} from '../actions';
+import {LANGUAGE, COORD, AUTH, USER_ID, POST_COORD, FILTER} from '../actions';
 
 function actionLanguage(lang) {
     return {
@@ -36,5 +36,11 @@ function actionPostCoord(postCoord){
     }
 }
 
+function actionFilter(filter){
+    return{
+        type: FILTER,
+        filter: filter
+    }
+}
 
-export { actionLanguage, actionCoord, actionAuth, actionUserId, actionPostCoord};
+export { actionLanguage, actionCoord, actionAuth, actionUserId, actionPostCoord, actionFilter};
