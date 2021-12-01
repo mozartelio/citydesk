@@ -3,13 +3,16 @@
     "post": "Post",
     "map": "Map",
     "profile": "Profile",
-    "post_overview": "Post Overview"
+    "post_overview": "Post Overview",
+    "location": "Location on map"
 
   },
   "profile": {
     "lang": "Language",
     "en": "English",
-    "sk": "Slovakian"
+    "sk": "Slovakian",
+    "uk": "Ukraine",
+    "log_out": "Log Out"
   },
   "map": {
 
@@ -28,6 +31,11 @@
   "post_overview": {
     "author": "Author",
     "date": "Date"
+  },
+  "authorization": {
+    "auth": "Authorization",
+    "welcome": "Welcome to CityDesk",
+    "login": "Log In"
   }
 
 }
