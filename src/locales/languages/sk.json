@@ -1,6 +1,7 @@
 {
   "interface": {
     "post": "Príspevok",
+    "all_post": "Zoznam",
     "map": "Mapa",
     "profile": "Profil",
     "post_overview": "Prehľad príspevku",

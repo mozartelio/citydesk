@@ -19,6 +19,7 @@ import PostOverview from "./screens/PostOverview";
 import Authorization from "./screens/Authorization";
 import PostOnMap from "./screens/PostOnMap";
 import {Picker} from "@react-native-picker/picker";
+import AllPost from "./screens/AllPost";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -89,6 +90,22 @@ function Home({ navigation }){
                 }}/>
 
             <Tab.Screen
+                name="Home"
+                component={AllPost}
+                options={{
+                    title: t('interface:all_post'),
+                    headerRight: () => (
+                        <View style={{flexDirection: 'row', alignItems: 'center',}}>
+                            <Pressable  name="search" size={28} color="black" style={{padding: 10}} onPress={() => navigation.navigate("Profile")}>
+                                <Image
+                                    source={profile}
+                                    style={styles.icon}/>
+                            </Pressable>
+                        </View>
+                    )
+                }}/>
+
+            <Tab.Screen
                 name="Map"
                 component={Map}
                 options={{
@@ -137,6 +154,7 @@ function App (){
               <Stack.Screen name="Profile" component={Profile} options={{ title: t('interface:profile') }}/>
               <Stack.Screen name="PostOverview" component={PostOverview} options={{ title: t('interface:post_overview') }}/>
               <Stack.Screen name="PostOnMap" component={PostOnMap} options={{ title: t('interface:location') }}/>
+              <Stack.Screen name="AllPost" component={AllPost} options={{ title: t('interface:all_post') }}/>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

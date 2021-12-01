@@ -1,6 +1,7 @@
 {
   "interface": {
     "post": "Пост",
+    "all_post": "Список",
     "map": "Карта",
     "profile": "Профіль",
     "post_overview": "Огляд публікації",
