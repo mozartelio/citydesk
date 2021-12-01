@@ -15,13 +15,12 @@ function Profile({navigation}){
     const user = useSelector((state)=> state.auth.user);
     const userId = useSelector((state)=> state.userId);
 
-    console.log('userId',userId)
     function logOut() {
         auth().signOut().then(r => r)
         GoogleSignin.revokeAccess();
         navigation.navigate('Authorization')
     }
-    console.log(user)
+
     return(
         <View style={styles.container}>
             <Image source={{uri: `${user ? user.photoURL : ''}`}} style={styles.avatar}/>
@@ -30,13 +29,9 @@ function Profile({navigation}){
             <Text>UID: {userId ? userId.toString() : ''}</Text>
             <Text style={{fontSize: 22, margin: 20, marginBottom: 50}}>{ user ? user.email : '' }</Text>
 
-            <Pressable style={styles.logIn} onPress={logOut}>
-                <Text style={styles.logInText}>Log Out</Text>
-            </Pressable>
-
             <Text>{t('profile:lang')}:</Text>
             <Picker
-                style={{ width: "100%" }}
+                style={{ width: "100%", pickerStyleType: 'none'}}
                 selectedValue={lang}
                 onValueChange={(val) => {
                     dispatch(actionLanguage(val))
@@ -45,10 +40,11 @@ function Profile({navigation}){
             >
                 <Picker.Item label={t('profile:en')} value="en" />
                 <Picker.Item label={t('profile:sk')} value="sk" />
+                <Picker.Item label={t('profile:uk')} value="uk" />
             </Picker>
 
             <Pressable style={styles.logIn} onPress={logOut}>
-                <Text style={styles.logInText}>Log Out</Text>
+                <Text style={styles.logInText}>{t('profile:log_out')}</Text>
             </Pressable>
         </View>
     )

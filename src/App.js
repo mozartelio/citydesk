@@ -9,25 +9,29 @@ import {PERMISSIONS, request} from "react-native-permissions";
 import Geolocation from '@react-native-community/geolocation';
 import './i18njs'
 import {Image, Platform} from "react-native";
-import {actionCoord} from "./redux/actionCreator";
+import {actionCoord, actionFilter} from "./redux/actionCreator";
 import Profile from "./screens/Profile";
 import Post from "./screens/Post";
 import Map from "./screens/Map";
 import { useTranslation } from "react-i18next";
-import {profile} from "./assets/icons";
+import {filters, profile} from "./assets/icons";
 import PostOverview from "./screens/PostOverview";
 import Authorization from "./screens/Authorization";
 import PostOnMap from "./screens/PostOnMap";
 import Icon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome5";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
+import {Picker} from "@react-native-picker/picker";
+import AllPost from "./screens/AllPost";
+import Ionicons from "react-native-vector-icons/Ionicons";
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function Home({ navigation }){
     const {t} = useTranslation();
     const dispatch = useDispatch();
-    const auth = useSelector((state)=> state.auth);
+    const filter = useSelector((state)=> state.filter);
 
     useEffect( () => {
         requestLocationPermission();
@@ -111,10 +115,10 @@ function Home({ navigation }){
                 }}/>
 
             <Tab.Screen
-                name="Map"
-                component={Map}
+                name="Home"
+                component={AllPost}
                 options={{
-                    title: t('interface:map'),
+                    title: t('interface:all_post'),
                     headerRight: () => (
                         <View style={{flexDirection: 'row', alignItems: 'center',}}>
                             <Pressable  name="search" size={28} color="black" style={{padding: 10}} onPress={() => navigation.navigate("Profile")}>
@@ -124,6 +128,14 @@ function Home({ navigation }){
                             </Pressable>
                         </View>
                     )
+                }}/>
+
+            <Tab.Screen
+                name="Map"
+                component={Map}
+                options={{
+                    title: t('interface:map'),
+                    headerShown: false,
                 }}/>
         </Tab.Navigator>
     );
@@ -136,13 +148,14 @@ function App (){
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator>
-              <Stack.Screen name="Authorization" component={Authorization} options={{ title: 'Authorization' }}/>
+              <Stack.Screen name="Authorization" component={Authorization} options={{ title: t("authorization:auth") }}/>
               <Stack.Screen name="Home" component={Home} options={{
               headerShown: false,
             }} />
               <Stack.Screen name="Profile" component={Profile} options={{ title: t('interface:profile') }}/>
               <Stack.Screen name="PostOverview" component={PostOverview} options={{ title: t('interface:post_overview') }}/>
-              <Stack.Screen name="PostOnMap" component={PostOnMap} options={{ title: 'PostOnMap' }}/>
+              <Stack.Screen name="PostOnMap" component={PostOnMap} options={{ title: t('interface:location') }}/>
+              <Stack.Screen name="AllPost" component={AllPost} options={{ title: t('interface:all_post') }}/>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

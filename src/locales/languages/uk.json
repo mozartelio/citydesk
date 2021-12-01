@@ -1,0 +1,42 @@
+{
+  "interface": {
+    "post": "Пост",
+    "all_post": "Список",
+    "map": "Карта",
+    "profile": "Профіль",
+    "post_overview": "Огляд публікації",
+    "location": "Розташування на карті"
+
+  },
+  "profile": {
+    "lang": "Мова",
+    "en": "Англійська",
+    "sk": "Словацька",
+    "uk": "Українська",
+    "log_out": "Вийти"
+  },
+  "map": {
+
+  },
+  "post": {
+    "topic": "Назва",
+    "description": "Опис",
+    "add_photo": "Додайте фото",
+    "upload_problem_photo": "Завантажте або сфотографуйте проблему",
+    "take_photo": "Сфотографувати",
+    "choose_from_library": "Виберіть із бібліотеки",
+    "cancel_photo": "Скасувати",
+    "att_image": "Прикріпити зображення",
+    "choose_responsible": "Виберіть відповідального"
+  },
+  "post_overview": {
+    "author": "Автор",
+    "date": "Дата"
+  },
+  "authorization": {
+    "auth": "Авторизація",
+    "welcome": "Ласкаво просимо до CityDesk",
+    "login": "Увійти"
+  }
+
+}

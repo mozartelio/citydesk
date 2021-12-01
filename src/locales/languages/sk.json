@@ -1,15 +1,19 @@
 {
   "interface": {
     "post": "Príspevok",
+    "all_post": "Zoznam",
     "map": "Mapa",
     "profile": "Profil",
-    "post_overview": "Prehľad príspevku"
+    "post_overview": "Prehľad príspevku",
+    "location": "Poloha na mape"
 
   },
   "profile": {
     "lang": "Jazyk",
     "en": "Angličtina",
-    "sk": "Slovenčina"
+    "sk": "Slovenčina",
+    "uk": "Ukrajinský",
+    "log_out": "Východ"
   },
   "map": {
 
@@ -35,6 +39,11 @@
   "post_overview": {
     "author": "Autor",
     "date": "Dátum"
+  },
+  "authorization": {
+    "auth": "Autorizácia",
+    "welcome": "Vitajte v CityDesk",
+    "login": "Prihláste sa"
   }
 
 }

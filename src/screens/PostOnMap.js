@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { View, StyleSheet, Image, Dimensions} from "react-native";
+import {View, StyleSheet, Image, Dimensions, Text} from "react-native";
 import {useTranslation} from "react-i18next";
 import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {useDispatch, useSelector} from "react-redux";
@@ -9,6 +9,7 @@ import {actionPostCoord} from "../redux/actionCreator";
 function PostOnMap({navigation}){
     const {t} = useTranslation();
     const coord = useSelector((state)=> state.coord);
+    const postCoord = useSelector((state)=> state.postCoord);
     const [state, setState] = useState({
         initialPosition: {
             latitude: coord[0],
@@ -30,11 +31,19 @@ function PostOnMap({navigation}){
                 showsCompass={true}
                 onPress={(c)=> {
                     dispatch(actionPostCoord([c.nativeEvent.coordinate.latitude, c.nativeEvent.coordinate.longitude]))
-                    navigation.navigate('Home');
+                    // navigation.navigate('Home');
                 }}
                 showsScale={true}
                 initialRegion={state.initialPosition}
-            />
+            >
+                <Marker
+                    coordinate={{latitude: postCoord ? postCoord[0] : coord[0], longitude: postCoord ? postCoord[1] : coord[1]}}
+                >
+                    <Callout>
+                        <Text>{'Your post location'}</Text>
+                    </Callout>
+                </Marker>
+            </MapView>
         </View>
     )
 }

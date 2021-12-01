@@ -115,7 +115,7 @@ function Post({navigation}){
             <TouchableOpacity
                 style={styles.panelButton}
                 onPress={() => bs.current.snapTo(1)}>
-                <Text style={styles.panelButtonTitle}>Cancel</Text>
+                <Text style={styles.panelButtonTitle}>{t('post:cancel_photo')}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -164,7 +164,7 @@ function Post({navigation}){
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    title: 'title',
+                    title: title,
                     context: context,
                     authorId: userId,
                     photoURL: postImageUrl,
@@ -204,11 +204,8 @@ function Post({navigation}){
                     }
                     placeholder={t('post:topic')}
                     multiline={true}
-                    // maxLength={22}
-                    maxLength={220}
-                    numberOfLines={usedLines>1?usedLines:1}
-                    style={[{height:50*usedLines},styles.topicInput]}
-                    onLayout={(e)=> _onLayout(e)}
+                    maxLength={35}
+                    style={styles.topicInput}
                 >
                 </TextInput>
                 <TextInput
@@ -240,19 +237,23 @@ function Post({navigation}){
                 </Picker>
 
                 <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
-                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end'}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end', marginTop: 20}}>
                         <Text style={{fontSize: 18}}>{image==null ? t('post:att_image') : 'Image was added'} </Text>
                         <Icon name="image" size={30} color="#4b524b" />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('PostOnMap')}>
-                    <Text style={{fontSize: 18, color:"black"}}>{t('post:place_coordinates')+":"}</Text>
-                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end'}}>
-                        <Text style={{fontSize: 16}}>{t('post:latitude')}: {postCoord!=null ? postCoord[0] : coord[0]}{'\n'} {t('post:longitude')}: {postCoord!=null  ? postCoord[1] : coord[1]} </Text>
+                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end', marginTop: 20}}>
+                        <Text style={{fontSize: 18}}>lat: {postCoord!=null ? postCoord[0] : coord[0]}{'\n'}lon: {postCoord!=null  ? postCoord[1] : coord[1]} </Text>
                         <Icon name="location" size={30} color="#4b524b" />
                     </View>
                 </TouchableOpacity>
-                <Button title={'Post'} onPress={()=>post()}/>
+
+                <TouchableOpacity style={{...styles.panelButton, marginTop: 30}} onPress={() => post()}>
+                    <Text style={styles.panelButtonTitle}>Post</Text>
+                </TouchableOpacity>
+
+
             </View>
             <BottomSheet
                 ref={bs}
