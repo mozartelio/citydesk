@@ -23,7 +23,14 @@
     "choose_from_library": "Choose from library",
     "cancel_photo": "Cancel",
     "att_image": "Attach image",
-    "choose_responsible": "Choose responsible"
+    "choose_responsible": "Choose responsible company",
+    "latitude":"latitude",
+    "longitude":"longitude",
+    "place_coordinates": "Mark the coordinates of the place",
+    "no_camera": "No camera error",
+    "no_camera_description": "Your mobile phone physically does not have a camera!",
+    "camera_error": "Camera's problem occurred",
+    "camera_error_description": "You didn't give a permission or other problem."
   },
   "post_overview": {
     "author": "Author",

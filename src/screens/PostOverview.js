@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Text, View, StyleSheet, Image} from "react-native";
+import {Text, View, StyleSheet, Image, ScrollView} from "react-native";
 import {useTranslation} from "react-i18next";
 
 function PostOverview({route}){
@@ -8,13 +8,14 @@ function PostOverview({route}){
 
     return(
         <View style={styles.container}>
-            <Image style={styles.image} source={{uri: `${item.photoURL}`}}/>
-            <Text style={styles.header}>{item.title}</Text>
-            <Text style={styles.text}>{item.context}</Text>
-            {/*<Text style={styles.extraInfo}>{t('post_overview:category')}: {item.category}</Text>*/}
-            <Text style={styles.extraInfo}>{t('post_overview:author')}: {item.name}</Text>
-            <Text style={styles.extraInfo}>{t('post_overview:date')}: {item.createdAt.substr(0,10)}</Text>
-
+            <ScrollView>
+                <Image style={styles.image} source={{uri: `${item.photoURL}`}}/>
+                <Text style={styles.header}>{item.title}</Text>
+                <Text style={styles.text}>{item.context}</Text>
+                {/*<Text style={styles.extraInfo}>{t('post_overview:category')}: {item.category}</Text>*/}
+                <Text style={styles.extraInfo}>{t('post_overview:author')}: {item.name}</Text>
+                <Text style={styles.extraInfo}>{t('post_overview:date')}: {item.createdAt.substr(0,10)}</Text>
+            </ScrollView>
         </View>
     )
 }
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        paddingBottom:20
         // justifyContent: 'center',
     }, image: {
         width: '100%',

@@ -23,7 +23,14 @@
     "choose_from_library": "Vybrať z galérie",
     "cancel_photo": "Zrušiť",
     "att_image": "Pridajte obrázok",
-    "choose_responsible": "Vyberte zodpovedneho"
+    "choose_responsible": "Vyberte zodpovedneho",
+    "latitude":"zemepisná šírka",
+    "longitude":"zemepisná dĺžka",
+    "place_coordinates": "Označte koordináty miesta",
+    "no_camera": "Chyba: nemáte kameru",
+    "no_camera_description": "Vás telefón fyzicky nemá kameru!",
+    "camera_error": "Vyskytol sa problém s kamerou",
+    "camera_error_description": "Nedali ste povolenie pre použitie kamery alebo iný problém."
   },
   "post_overview": {
     "author": "Autor",
