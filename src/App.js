@@ -18,6 +18,9 @@ import {filters, profile} from "./assets/icons";
 import PostOverview from "./screens/PostOverview";
 import Authorization from "./screens/Authorization";
 import PostOnMap from "./screens/PostOnMap";
+import Icon from "react-native-vector-icons/Ionicons";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome5";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import {Picker} from "@react-native-picker/picker";
 import AllPost from "./screens/AllPost";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -72,6 +75,27 @@ function Home({ navigation }){
             screenOptions={({ route }) => ({
                 tabBarActiveTintColor: 'tomato',
                 tabBarInactiveTintColor: '#000',
+                tabBarStyle:{
+                  paddingBottom:6
+                },
+                tabBarIcon: ({ focused,color, size }) =>
+                {
+                  if (route.name === 'Post') {
+                    return (
+                      <MaterialIcons name="post-add" size={size} color={color}/>
+                    );
+                  }
+                  else if (route.name === 'AllPosts') {
+                    return (
+                      <MaterialIcons name="list-alt" size={size} color={color}/>
+                    );
+                  }
+                  else if (route.name === 'Map') {
+                    return (
+                      <FontAwesomeIcon name="map-marked-alt" size={size} color={color}/>
+                    );
+                  }
+                }
             })}
         >
             <Tab.Screen

@@ -1,16 +1,29 @@
-import React, {useState} from "react";
-import {Text, View, StyleSheet, TextInput, FlatList, TouchableOpacity, Button} from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+    Text,
+    View,
+    StyleSheet,
+    TextInput,
+    FlatList,
+    TouchableOpacity,
+    Button,
+    Platform,
+    PermissionsAndroid, Alert, AppRegistry,
+} from "react-native";
 import {useTranslation} from "react-i18next";
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
 import Icon from "react-native-vector-icons/Ionicons";
 import ImagePicker from 'react-native-image-crop-picker';
-import {actionLanguage} from "../redux/actionCreator";
+import { actionCoord, actionLanguage } from "../redux/actionCreator";
 import i18n from "i18next";
 import {Picker} from "@react-native-picker/picker";
 import {useSelector} from "react-redux";
 import storage from "@react-native-firebase/storage";
+// import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 import {expectNoConsoleError} from "react-native/Libraries/Utilities/ReactNativeTestTools";
+import { PERMISSIONS, request } from "react-native-permissions";
+import Geolocation from "@react-native-community/geolocation";
 
 
 
@@ -27,17 +40,45 @@ function Post({navigation}){
     const [title, setTitle] = useState(' ');
     const [context, setContext] = useState(' ');
 
+    const [height,setHeight]=useState(styles.topicInput.height);
+    const[usedLines,setUsedLines]=useState(1);
+    const[maxHeaderLength, setMaxHeaderLength]=useState(20);
+    function _onLayout(e) {
+        console.log('e', e.nativeEvent.layout.height);
+        // the height increased therefore we also increase the usedLine counter
+        if (height < e.nativeEvent.layout.height) {
+            setUsedLines(usedLines+1);
+        }
+        // the height decreased, we subtract a line from the line counter
+        if (height > e.nativeEvent.layout.height){
+            setUsedLines(usedLines-1);
+        }
+        // update height if necessary
+        if (height !== e.nativeEvent.layout.height){
+            setHeight(e.nativeEvent.layout.height)
+        }
+
+    }
+
     const takePhotoFromCamera = () => {
         ImagePicker.openCamera({
             compressImageMaxWidth: 300,
             compressImageMaxHeight: 300,
             cropping: true,
-            compressImageQuality: 0.7
+            // compressImageQuality: 0.7
         }).then(image => {
             console.log(image);
             setImage(image.path);
             //hide the bar after choosing a photo
             bs.current.snapTo(1);
+        }).catch(error => {
+            switch (error){
+                case "CAMERA_UNAVAILABLE":
+                    Alert.alert(t('post:no_camera'),t('post:no_camera_description'));
+                    break;
+                case "OTHERS": case "PERMISSION": default:
+                    Alert.alert(t('post:camera_error'),t('post:camera_error_description'));
+            }
         });
     }
 
@@ -149,19 +190,24 @@ function Post({navigation}){
             console.log(e.message())
         }
     }
+    // useEffect(function(){
+    //     setHeight(50*usedLines)
+    // }, [state]);
 
     return(
         <View >
             <View style={styles.container}>
                 <TextInput
-                    onChangeText={text => setTitle(text)}
+                    onChangeText={text => {
+                        setTitle(text);
+                        setUsedLines(Math.ceil(text/maxHeaderLength));}
+                    }
                     placeholder={t('post:topic')}
                     multiline={true}
                     maxLength={35}
                     style={styles.topicInput}
                 >
                 </TextInput>
-
                 <TextInput
                     //
                     placeholder={t('post:description')}
@@ -240,7 +286,7 @@ const styles = StyleSheet.create({
         height:'90%',
     },
     topicInput:{
-        height: 50,
+        // height: 50,
         borderBottomWidth:2,
         borderBottomColor: 'black',
         fontSize:25,
@@ -324,3 +370,4 @@ const styles = StyleSheet.create({
 });
 
 export default Post;
+AppRegistry.registerComponent('AutogrowTextinput', () => Post);

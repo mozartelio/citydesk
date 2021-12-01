@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {Text, View, StyleSheet, Image, Button, TouchableOpacity, Alert} from "react-native";
+
+import {Text, View, StyleSheet, Image, Button, TouchableOpacity, Alert, ScrollView} from "react-native";
+
 import {useTranslation} from "react-i18next";
 import RBSheet from "react-native-raw-bottom-sheet";
 
@@ -10,6 +12,10 @@ function PostOverview({route}){
     const message = 'Thank you for your compliment.\nAs soon as this post will be reviewed, you\'ll be notified  by email.';
     return(
         <View style={styles.container}>
+            <ScrollView>
+                
+            
+
             <TouchableOpacity style={{backgroundColor: '#000', padding: 10, justifyContent: 'center'}} onPress={() => sheet.open()}>
                 <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>Sent complain</Text>
             </TouchableOpacity>
@@ -50,6 +56,7 @@ function PostOverview({route}){
             <Text style={styles.extraInfo}>{t('post_overview:author')}: {item.name}</Text>
             <Text style={styles.extraInfo}>{t('post_overview:date')}: {item.createdAt.substr(0,10)}</Text>
 
+            </ScrollView>
         </View>
     )
 }
@@ -58,6 +65,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        paddingBottom:20
         // justifyContent: 'center',
     }, image: {
         width: '100%',
