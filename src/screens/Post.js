@@ -5,7 +5,7 @@ import {
     StyleSheet,
     TextInput,
     TouchableOpacity,
-    Alert, AppRegistry, ScrollView,
+    Alert, AppRegistry, ScrollView, Pressable,
 } from "react-native";
 import {useTranslation} from "react-i18next";
 import BottomSheet from 'reanimated-bottom-sheet';
@@ -78,19 +78,19 @@ function Post({navigation}){
                 <Text style={styles.panelSubtitle}>{t('post:upload_problem_photo')}</Text>
             </View>
 
-            <TouchableOpacity style={styles.panelButton} onPress={takePhotoFromCamera}>
+            <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? '#FFD369' : '#eee' }, styles.panelButton ]} onPress={takePhotoFromCamera}>
                 <Text style={styles.panelButtonTitle}>{t('post:take_photo')}</Text>
-            </TouchableOpacity>
+            </Pressable>
 
-            <TouchableOpacity style={styles.panelButton} onPress={choosePhotoFromLibrary}>
+            <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? '#FFD369' : '#eee' }, styles.panelButton ]} onPress={choosePhotoFromLibrary}>
                 <Text style={styles.panelButtonTitle}>{t('post:choose_from_library')}</Text>
-            </TouchableOpacity>
+            </Pressable>
 
-            <TouchableOpacity
-                style={styles.panelButton}
+            <Pressable
+                style={({ pressed }) => [{ backgroundColor: pressed ? '#FFD369' : '#eee' }, styles.panelButton ]}
                 onPress={() => bs.current.snapTo(1)}>
                 <Text style={styles.panelButtonTitle}>{t('post:cancel_photo')}</Text>
-            </TouchableOpacity>
+            </Pressable>
         </View>
     );
 
@@ -185,6 +185,7 @@ function Post({navigation}){
                         multiline={true}
                         maxLength={35}
                         style={styles.topicInput}
+                        placeholderTextColor={"#a7a7a7"}
                     >
                     </TextInput>
                     <TextInput
@@ -195,42 +196,48 @@ function Post({navigation}){
                         numberOfLines={10}
                         maxLength={500}
                         style={styles.descriptionInput}
+                        placeholderTextColor={"#a7a7a7"}
                     >
                     </TextInput>
 
                     <Picker
-                        style={{ width: "100%" }}
+                        style={{ width: "100%", color: "#eee" }}
+                        dropdownIconColor={"#eee"}
                         selectedValue={responsible}
                         onValueChange={(val) => {
                             setResponsible(val)
 
                         }}
                     >
-                        <Picker.Item value='' label={`${t('post:choose_responsible')}`} />
-                        <Picker.Item label={t('post:zelene')} value="61a691bb995723164217eedd" />
-                        <Picker.Item label={t("post:dopravny_podnik")} value="61a6927d35a0b6cb15e4cf80" />
-                        <Picker.Item label={t("post:lesy")} value="61a6927d35a0b6cb15e4cf7f" />
-                        <Picker.Item label={t("post:spp")} value="61a6927d35a0b6cb15e4cf82" />
-                        <Picker.Item label={t("post:vodarenska")} value="61a6927d35a0b6cb15e4cf81" />
-                        <Picker.Item label={t("post:dontknow")} value="61a762fa518121cf0cb8f921" />
+                        <Picker.Item style={{color:"#eee", backgroundColor: "#222831"}} value='' label={`${t('post:choose_responsible')}`} />
+                        <Picker.Item style={{color:"#eee", backgroundColor: "#222831"}} label={t('post:zelene')} value="61a691bb995723164217eedd" />
+                        <Picker.Item style={{color:"#eee", backgroundColor: "#222831"}} label={t("post:dopravny_podnik")} value="61a6927d35a0b6cb15e4cf80" />
+                        <Picker.Item style={{color:"#eee", backgroundColor: "#222831"}} label={t("post:lesy")} value="61a6927d35a0b6cb15e4cf7f" />
+                        <Picker.Item style={{color:"#eee", backgroundColor: "#222831"}} label={t("post:spp")} value="61a6927d35a0b6cb15e4cf82" />
+                        <Picker.Item style={{color:"#eee", backgroundColor: "#222831"}} label={t("post:vodarenska")} value="61a6927d35a0b6cb15e4cf81" />
+                        <Picker.Item style={{color:"#eee", backgroundColor: "#222831"}} label={t("post:dontknow")} value="61a762fa518121cf0cb8f921" />
                     </Picker>
 
-                    <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
-                        <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end', marginTop: 20}}>
-                            <Text style={{fontSize: 18}}>{image==null ? t('post:att_image') : 'Image was added'} </Text>
-                            <Icon name="image" size={30} color="#4b524b" />
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('PostOnMap')}>
-                        <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end', marginTop: 20}}>
-                            <Text style={{fontSize: 18}}>lat: {postCoord!=null ? postCoord[0] : coord[0]}{'\n'}lon: {postCoord!=null  ? postCoord[1] : coord[1]} </Text>
-                            <Icon name="location" size={30} color="#4b524b" />
-                        </View>
-                    </TouchableOpacity>
+                    <Pressable onPress={() => bs.current.snapTo(0)}>
+                        {({pressed}) => (
+                            <View style={{flexDirection: 'row', marginTop: 20}}>
+                                <Icon name="image" size={30} color={pressed? "#FFD369": "#eee"} />
+                                <Text style={{fontSize: 18, color: pressed? "#FFD369": "#eee",  padding: 5}}>{image==null ? t('post:att_image') : 'Attached image'} </Text>
+                            </View>
+                        )}
+                    </Pressable>
+                    <Pressable onPress={() => navigation.navigate('PostOnMap')}>
+                        {({pressed}) => (
+                            <View style={{flexDirection: 'row', marginTop: 20}}>
+                                <Icon name="location" size={30} color={pressed? "#FFD369": "#eee"} />
+                                <Text style={{fontSize: 18, color: pressed? "#FFD369": "#eee", padding: 5}}>{postCoord!=null ? "Location added" : "Current Location"} </Text>
+                            </View>
+                        )}
+                    </Pressable>
 
-                    <TouchableOpacity style={{...styles.panelButton, marginTop: 30}} onPress={() => post()}>
+                    <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? '#FFD369' : '#eee' }, styles.postButton ]} onPress={() => post()}>
                         <Text style={styles.panelButtonTitle}>{t("post:post")}</Text>
-                    </TouchableOpacity>
+                    </Pressable>
                 </ScrollView>
 
             </View>
@@ -253,12 +260,12 @@ const styles = StyleSheet.create({
     container: {
         // flex: 1,
         // flexDirection:"column",
-        backgroundColor: '#fff',
+        backgroundColor: '#222831',
         // alignItems: 'center',
         // justifyContent: 'center',
         width:'100%',
         height:'100%',
-        padding:30
+        padding:15
     },
     post:{
         width:'80%',
@@ -267,17 +274,18 @@ const styles = StyleSheet.create({
     topicInput:{
         // height: 50,
         borderBottomWidth:2,
-        borderBottomColor: 'black',
+        borderBottomColor: '#FFD369',
         fontSize:25,
-        color:'black',
+        color:'#eee',
         fontWeight:'bold'
     },
     descriptionInput:{
         fontSize:18,
-        height: 200,
+        height: "30%",
         borderBottomWidth: 2,
+        borderBottomColor: '#FFD369',
         fontWeight:'normal',
-        color:'black',
+        color:'#eee',
         marginVertical:10
     },
     commandButton: {
@@ -289,11 +297,11 @@ const styles = StyleSheet.create({
     },
     panel: {
         padding: 20,
-        backgroundColor: '#f0f7f2',
+        backgroundColor: '#2d333e',
         paddingTop: 20,
     },
     header: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#2d333e',
         shadowColor: '#333333',
         shadowOffset: {width: -1, height: -3},
         shadowRadius: 2,
@@ -305,24 +313,34 @@ const styles = StyleSheet.create({
     panelTitle: {
         fontSize: 27,
         height: 35,
+        color: "#eee"
     },
     panelSubtitle: {
         fontSize: 14,
-        color: 'gray',
+        color: '#a9a9a9',
         height: 30,
         marginBottom: 10,
     },
     panelButton: {
-        padding: 13,
+        padding: 10,
         borderRadius: 10,
-        backgroundColor: '#010101',
         alignItems: 'center',
-        marginVertical: 7,
+        alignSelf: 'center',
+        width: "80%",
+        marginTop: "5%",
+    },
+    postButton: {
+        padding: 10,
+        borderRadius: 10,
+        alignItems: 'center',
+        alignSelf: 'center',
+        width: "50%",
+        marginTop: "5%",
     },
     panelButtonTitle: {
         fontSize: 17,
         fontWeight: 'bold',
-        color: 'white',
+        color: '#222831',
     },
     action: {
         flexDirection: 'row',

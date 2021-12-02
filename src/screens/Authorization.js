@@ -89,8 +89,8 @@ function Authorization({navigation}) {
     return (
         <View style={styles.container}>
             <Image source={logo} style={styles.logo}/>
-            
-            <Pressable style={styles.logIn} onPress={logIn}>
+
+            <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? '#FFD369' : '#eee' }, styles.logIn ]} onPress={logIn}>
                 <Text style={styles.logInText}>{t("authorization:login")}</Text>
                 <Image source={google} style={styles.googleIcon}/>
             </Pressable>
@@ -103,7 +103,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "#222831"
     },
     heading: {
         fontSize: 32,
@@ -112,11 +113,9 @@ const styles = StyleSheet.create({
     },
     logIn: {
         flexDirection: "row",
-        width: "80%",
-        backgroundColor: "#fff",
+        width: "50%",
         elevation: 8,
-        padding: 20,
-        marginBottom: 100,
+        marginBottom: "10%",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 10,
@@ -124,18 +123,20 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     logInText: {
-        color: "#000",
         fontSize: 20,
-        marginRight: 10
+        fontWeight: 'bold',
+        marginBottom: "2%",
+        color: '#222831',
     },
     googleIcon: {
         width: 40,
         height: 40,
-        alignSelf: "center"
+        alignSelf: "center",
+        marginLeft: "10%"
     },logo: {
-        width: 450,
-        height:  450,
-        marginBottom: 100
+        width: "85%",
+        height: "68%",
+        marginBottom: "35%"
     }
 });
 
