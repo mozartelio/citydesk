@@ -23,7 +23,7 @@ Exept it, in future it will be possible to add some notifications for companies 
 - Find sponsors and run CytyDesk globaly.
 
 ## FOR - people
-## WHO - love their cyty and want to make it better place for living
+## WHO - love their city and want to make it better place for living
 ## THE - CityDesk
 ## IS - the fault and breakdown notification application
 ## WHICH - send notifications about breakdowns to responsible structures
