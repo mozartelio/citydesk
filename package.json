@@ -27,6 +27,7 @@
     "react-native-autogrow-textinput": "^5.4.0",
     "react-native-dotenv": "^3.3.0",
     "react-native-elements": "^3.4.2",
+    "react-native-geocoding": "^0.5.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-image-crop-picker": "^0.37.2",
     "react-native-localize": "^2.1.5",

@@ -4,12 +4,20 @@ import {Text, View, StyleSheet, Image, Button, TouchableOpacity, Alert, ScrollVi
 
 import {useTranslation} from "react-i18next";
 import RBSheet from "react-native-raw-bottom-sheet";
+import Icon from "react-native-vector-icons/Ionicons";
+import latLngToAddress from "../geocoder/latLngToAddress";
 
 function PostOverview({route}){
     const item = route.params.item;
     const {t} = useTranslation();
     const [sheet, setSheet] = useState(null)
     const message = 'Thank you for your compliment.\nAs soon as this post will be reviewed, you\'ll be notified  by email.';
+
+    const [address, setAddress] = useState("");
+
+    let convertedAddress = latLngToAddress(item.latitude, item.longitude);
+    convertedAddress.then(setAddress);
+
     return(
         <View style={styles.container}>
             <ScrollView>
@@ -52,6 +60,10 @@ function PostOverview({route}){
             <Image style={styles.image} source={{uri: `${item.photoURL}`}}/>
             <Text style={styles.header}>{item.title}</Text>
             <Text style={styles.text}>{item.context}</Text>
+            <View style={{flexDirection: 'row', padding: 15}}>
+                <Icon name="location" size={20} color="#4b524b" />
+                <Text style={{fontSize: 14}}>{address}</Text>
+            </View>
             <Text style={styles.extraInfo}>{t('post_overview:category')}: {item.organization}</Text>
             <Text style={styles.extraInfo}>{t('post_overview:author')}: {item.name}</Text>
             <Text style={styles.extraInfo}>{t('post_overview:date')}: {item.createdAt.substr(0,10)}</Text>

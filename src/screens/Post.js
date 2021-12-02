@@ -15,8 +15,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {Picker} from "@react-native-picker/picker";
 import {useSelector} from "react-redux";
 import storage from "@react-native-firebase/storage";
-
-
+import latLngToAddress from "../geocoder/latLngToAddress";
 
 
 function Post({navigation}){
@@ -33,7 +32,11 @@ function Post({navigation}){
     const [context, setContext] = useState('');
     const [titleRef, setTitleRef] = useState(null);
     const [contextRef, setContextRef] = useState(null);
+    const [address, setAddress] = useState("");
 
+    let latLng = postCoord || coord;
+    let convertedAddress = latLngToAddress(latLng[0], latLng[1]);
+    convertedAddress.then(setAddress);
 
     const takePhotoFromCamera = () => {
         ImagePicker.openCamera({
@@ -223,7 +226,7 @@ function Post({navigation}){
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('PostOnMap')}>
                         <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end', marginTop: 20}}>
-                            <Text style={{fontSize: 18}}>lat: {postCoord!=null ? postCoord[0] : coord[0]}{'\n'}lon: {postCoord!=null  ? postCoord[1] : coord[1]} </Text>
+                            <Text style={{fontSize: 18, marginLeft: 30}}>{address}</Text>
                             <Icon name="location" size={30} color="#4b524b" />
                         </View>
                     </TouchableOpacity>
