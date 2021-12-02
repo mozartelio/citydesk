@@ -1,29 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
     Text,
     View,
     StyleSheet,
     TextInput,
-    FlatList,
     TouchableOpacity,
-    Button,
-    Platform,
-    PermissionsAndroid, Alert, AppRegistry,
+     Alert, AppRegistry,
 } from "react-native";
 import {useTranslation} from "react-i18next";
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
 import Icon from "react-native-vector-icons/Ionicons";
 import ImagePicker from 'react-native-image-crop-picker';
-import { actionCoord, actionLanguage } from "../redux/actionCreator";
-import i18n from "i18next";
 import {Picker} from "@react-native-picker/picker";
 import {useSelector} from "react-redux";
 import storage from "@react-native-firebase/storage";
-// import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
-import {expectNoConsoleError} from "react-native/Libraries/Utilities/ReactNativeTestTools";
-import { PERMISSIONS, request } from "react-native-permissions";
-import Geolocation from "@react-native-community/geolocation";
+
 
 
 
@@ -33,32 +25,15 @@ function Post({navigation}){
     const [image, setImage] = useState(null);
     const [bs, setBs] = useState(React.createRef())
     const fall = new Animated.Value(1);
-    const [responsible, setResponsible] = useState(null)
+    const [responsible, setResponsible] = useState('')
     const userId = useSelector((state)=> state.userId);
     const coord = useSelector((state)=> state.coord);
     const postCoord = useSelector((state)=> state.postCoord);
-    const [title, setTitle] = useState(' ');
-    const [context, setContext] = useState(' ');
+    const [title, setTitle] = useState('');
+    const [context, setContext] = useState('');
+    const [titleRef, setTitleRef] = useState(null);
+    const [contextRef, setContextRef] = useState(null);
 
-    const [height,setHeight]=useState(styles.topicInput.height);
-    const[usedLines,setUsedLines]=useState(1);
-    const[maxHeaderLength, setMaxHeaderLength]=useState(20);
-    function _onLayout(e) {
-        console.log('e', e.nativeEvent.layout.height);
-        // the height increased therefore we also increase the usedLine counter
-        if (height < e.nativeEvent.layout.height) {
-            setUsedLines(usedLines+1);
-        }
-        // the height decreased, we subtract a line from the line counter
-        if (height > e.nativeEvent.layout.height){
-            setUsedLines(usedLines-1);
-        }
-        // update height if necessary
-        if (height !== e.nativeEvent.layout.height){
-            setHeight(e.nativeEvent.layout.height)
-        }
-
-    }
 
     const takePhotoFromCamera = () => {
         ImagePicker.openCamera({
@@ -142,20 +117,20 @@ function Post({navigation}){
         const SERVER = 'https://hackathon-citydesk.herokuapp.com/'
 
         try {
-            if(image == null) {
-                alert('Please choose an image')
+            if(title == '' || context== '') {
+                Alert.alert('Warning','Please choose fill the form')
                 return;
             }
             if(responsible == '') {
-                alert('Please choose the responsible organization')
+                Alert.alert('Warning','Please choose the responsible organization')
                 return;
             }
-            if(title == '') {
-                alert('Please add the title')
+            if(image == null) {
+                Alert.alert('Warning','Please choose an image')
                 return;
             }
             if(context == '') {
-                alert('Please fill the title')
+                Alert.alert('Warning','Please fill the title')
                 return;
             }
             let postImageUrl = await loadPhoto(image)
@@ -169,39 +144,43 @@ function Post({navigation}){
                     authorId: userId,
                     photoURL: postImageUrl,
                     latitude: location[0],
-                    longitude: location[1]
-                    // responsibleOrganizations: [responsible]
+                    longitude: location[1],
+                    responsibleOrganizations: [responsible]
 
                 })
             };
-            console.log(userId)
-
-
+            setTitle('');
+            setContext('');
+            setResponsible('');
+            setImage(null);
+            if(titleRef)
+                titleRef.clear();
+            if(contextRef)
+                contextRef.clear();
             console.log('data', requestOptions)
             let response = await fetch(`${SERVER}addProblem`, requestOptions);
-            if(response.status != 200){
-                alert(`Server error ${response.status}\n Try again later`);
+            if(response.status != 200) {
+                Alert.alert('Ups',`Server error ${response.status}\n Try again later`);
                 return;
+            // }else if(response.status != 402){
+            //     Alert.alert('Ups',`Your account is banned, you can\'t send ant posts`);
+            //     return;
             }else{
-                alert(`Post was successfully added`);
+                Alert.alert('Success',`Post was successfully added`);
             }
+
 
         }catch (e){
             console.log(e.message())
         }
     }
-    // useEffect(function(){
-    //     setHeight(50*usedLines)
-    // }, [state]);
 
     return(
         <View >
             <View style={styles.container}>
                 <TextInput
-                    onChangeText={text => {
-                        setTitle(text);
-                        setUsedLines(Math.ceil(text/maxHeaderLength));}
-                    }
+                    ref={input => { setTitleRef(input)  }}
+                    onChangeText={text => setTitle(text) }
                     placeholder={t('post:topic')}
                     multiline={true}
                     maxLength={35}
@@ -209,7 +188,7 @@ function Post({navigation}){
                 >
                 </TextInput>
                 <TextInput
-                    //
+                    ref={input => { setContextRef(input)  }}
                     placeholder={t('post:description')}
                     multiline={true}
                     onChangeText={text => setContext(text)}
@@ -312,12 +291,6 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: '#f0f7f2',
         paddingTop: 20,
-        // borderTopLeftRadius: 20,
-        // borderTopRightRadius: 20,
-        // shadowColor: '#000000',
-        // shadowOffset: {width: 0, height: 0},
-        // shadowRadius: 5,
-        // shadowOpacity: 0.4,
     },
     header: {
         backgroundColor: '#FFFFFF',

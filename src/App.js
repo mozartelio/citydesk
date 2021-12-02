@@ -115,7 +115,7 @@ function Home({ navigation }){
                 }}/>
 
             <Tab.Screen
-                name="Home"
+                name="AllPosts"
                 component={AllPost}
                 options={{
                     title: t('interface:all_post'),
