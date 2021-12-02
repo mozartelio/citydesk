@@ -86,32 +86,34 @@ function AllPost({navigation}){
 
 const styles = StyleSheet.create({
     container: {
-        borderWidth: 0.2
+        borderWidth: 0.2,
+        backgroundColor: "#222831"
     },
     image: {
         width: '100%',
         height: 300,
-        borderColor: '#000',
-        borderWidth: 0.5
+        borderColor: '#eee',
+        borderWidth: 0.5,
+        borderRadius: 10
     },
     header: {
         fontWeight: 'bold',
         fontSize: 20,
         padding: 12,
         marginLeft: "3%",
-        color: '#000'
+        color: '#eee'
     },
     text: {
         fontSize: 18,
         padding: 8,
-        color: '#000'
+        color: '#eee'
     },
     extraInfo: {
         fontSize: 14,
         fontWeight: 'bold',
         paddingLeft: 8,
         paddingBottom: 18,
-        color: '#000'
+        color: '#FFD369'
     }
 });
 

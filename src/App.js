@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet, Pressable,LogBox } from "react-native";
+import {Text, View, StyleSheet, Pressable, LogBox, StatusBar} from "react-native";
 import store from "./redux/store";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -73,11 +73,11 @@ function Home({ navigation }){
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
-                tabBarActiveTintColor: 'tomato',
-                tabBarInactiveTintColor: '#000',
-                tabBarStyle:{
-                  paddingBottom:6
-                },
+                tabBarActiveTintColor: '#FFD369',
+                tabBarInactiveTintColor: '#eee',
+                tabBarActiveBackgroundColor: "#222831",
+                tabBarInactiveBackgroundColor: "#222831",
+                headerStyle:{backgroundColor: "#2d333e"}, headerTintColor: "#eee",
                 tabBarIcon: ({ focused,color, size }) =>
                 {
                   if (route.name === 'Post') {
@@ -106,9 +106,7 @@ function Home({ navigation }){
                     headerRight: () => (
                         <View style={{flexDirection: 'row', alignItems: 'center',}}>
                             <Pressable  name="search" size={28} color="black" style={{padding: 10}} onPress={() => navigation.navigate("Profile")}>
-                                <Image
-                                    source={profile}
-                                    style={styles.icon}/>
+                                <FontAwesomeIcon name="user" size={25} color={"#eee"}/>
                             </Pressable>
                         </View>
                     )
@@ -122,9 +120,7 @@ function Home({ navigation }){
                     headerRight: () => (
                         <View style={{flexDirection: 'row', alignItems: 'center',}}>
                             <Pressable  name="search" size={28} color="black" style={{padding: 10}} onPress={() => navigation.navigate("Profile")}>
-                                <Image
-                                    source={profile}
-                                    style={styles.icon}/>
+                                <FontAwesomeIcon name="user" size={25} color={"#eee"} style={{marginRight: "3%"}}/>
                             </Pressable>
                         </View>
                     )
@@ -150,12 +146,11 @@ function App (){
 
     return (
       <Provider store={store}>
+        <StatusBar backgroundColor={"#2d333e"}/>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator screenOptions={{headerStyle:{backgroundColor: "#2d333e"}, headerTintColor: "#eee"}}>
               <Stack.Screen name="Authorization" component={Authorization} options={{ title: t("authorization:auth") }}/>
-              <Stack.Screen name="Home" component={Home} options={{
-              headerShown: false,
-            }} />
+              <Stack.Screen name="Home" component={Home} options={{headerShown: false,}} />
               <Stack.Screen name="Profile" component={Profile} options={{ title: t('interface:profile') }}/>
               <Stack.Screen name="PostOverview" component={PostOverview} options={{ title: t('interface:post_overview') }}/>
               <Stack.Screen name="PostOnMap" component={PostOnMap} options={{ title: t('interface:location') }}/>

@@ -23,28 +23,28 @@ function Profile({navigation}){
 
     return(
         <View style={styles.container}>
+
             <Image source={{uri: `${user ? user.photoURL : ''}`}} style={styles.avatar}/>
+            <Text style={{fontSize: 32, marginTop: 25, color:"#eee"}}>{ user ? user.displayName : '' }</Text>
+            <Text style={{fontSize: 22, margin: 25, marginBottom: 50, color:"#eee"}}>{ user ? user.email : '' }</Text>
 
-            <Text style={{fontSize: 32, }}>{ user ? user.displayName : '' }</Text>
-            <Text>UID: {userId ? userId.toString() : ''}</Text>
-            <Text style={{fontSize: 22, margin: 20, marginBottom: 50}}>{ user ? user.email : '' }</Text>
-
-            <Text>{t('profile:lang')}:</Text>
+            <Text style={{fontSize: 22, color:"#eee"}}>{t('profile:lang')}:</Text>
             <Picker
-                style={{ width: "100%", pickerStyleType: 'none'}}
+                style={{ width: "100%", color: "#eee" }}
+                dropdownIconColor={"#eee"}
                 selectedValue={lang}
                 onValueChange={(val) => {
                     dispatch(actionLanguage(val))
                     i18n.changeLanguage(val).then(r => console.log(r));;
                 }}
             >
-                <Picker.Item label={t('profile:en')} value="en" />
-                <Picker.Item label={t('profile:sk')} value="sk" />
-                <Picker.Item label={t('profile:uk')} value="uk" />
+                <Picker.Item style={{color:"#eee", backgroundColor: "#222831"}} label={t('profile:en')} value="en" />
+                <Picker.Item style={{color:"#eee", backgroundColor: "#222831"}} label={t('profile:sk')} value="sk" />
+                <Picker.Item style={{color:"#eee", backgroundColor: "#222831"}} label={t('profile:uk')} value="uk" />
             </Picker>
 
-            <Pressable style={styles.logIn} onPress={logOut}>
-                <Text style={styles.logInText}>{t('profile:log_out')}</Text>
+            <Pressable style={({ pressed }) => [{ backgroundColor: pressed ? '#FFD369' : '#eee' }, styles.logIn ]} onPress={logOut}>
+                <Text style={styles.logOutText}>{t('profile:log_out')}</Text>
             </Pressable>
         </View>
     )
@@ -53,31 +53,34 @@ function Profile({navigation}){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#222831',
         alignItems: 'center',
 
     },
     logIn: {
         flexDirection: "row",
-        width: "80%",
-        backgroundColor: "#fff",
+        width: "45%",
         elevation: 8,
-        padding: 20,
-        marginBottom: 30,
+        padding: 12,
+        marginBottom: 35,
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 10,
         bottom: 0,
         position: 'absolute',
-    },
-    logInText: {
-        color: "#000",
-        fontSize: 20,
-        marginRight: 10
     }, avatar: {
         width: 100,
         height: 100,
-        borderRadius: 100
+        borderRadius: 50,
+        marginTop: "8%",
+        borderWidth: 1,
+        borderColor: "#eee"
+
+    },
+    logOutText:{
+        fontSize: 17,
+        fontWeight: 'bold',
+        color: '#222831',
     }
 
 });
