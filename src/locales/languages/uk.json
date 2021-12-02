@@ -27,7 +27,14 @@
     "choose_from_library": "Виберіть із бібліотеки",
     "cancel_photo": "Скасувати",
     "att_image": "Прикріпити зображення",
-    "choose_responsible": "Виберіть відповідального"
+    "choose_responsible": "Виберіть відповідального",
+    "latitude":"широта",
+    "longitude":"довгота",
+    "place_coordinates": "Позначте координати місця",
+    "no_camera": "Немаєте камеру",
+    "no_camera_description": "У вашому мобільному телефоні фізично немає камери!",
+    "camera_error": "Виникла проблема з камерою",
+    "camera_error_description": "Ви не дали дозволу чи інша проблема"
   },
   "post_overview": {
     "author": "Автор",
