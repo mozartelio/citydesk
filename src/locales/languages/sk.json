@@ -34,11 +34,26 @@
     "no_camera": "Chyba: nemáte kameru",
     "no_camera_description": "Vás telefón fyzicky nemá kameru!",
     "camera_error": "Vyskytol sa problém s kamerou",
-    "camera_error_description": "Nedali ste povolenie pre použitie kamery alebo iný problém."
+    "camera_error_description": "Nedali ste povolenie pre použitie kamery alebo iný problém.",
+    "post": "Poslať",
+    "zelene": "Správa mestskej zelene v Košiciach",
+    "dopravny_podnik": "Dopravný podnik mesta Košice, a.s.",
+    "lesy": "Mestské lesy Košice, a.s.",
+    "spp": "SPP",
+    "vodarenska": "Východoslovenská vodárenská spoločnosť, a.s.",
+    "dontknow": "Ja neviem"
   },
   "post_overview": {
     "author": "Autor",
-    "date": "Dátum"
+    "date": "Dátum",
+    "category": "Kategória",
+    "send_comp": "Odoslať sťažnosť",
+    "choose": "Vyberte si jednu z nasledujúcich sťažností:",
+    "spam": "Spam alebo falošný obsah",
+    "aggressive": "Agresívne akcie alebo zastrašovanie",
+    "sexual": "Sexuálny obsah",
+    "violation": "Porušenie mojich práv",
+    "hateful": "Nenávistný a urážlivý obsah"
   },
   "authorization": {
     "auth": "Autorizácia",

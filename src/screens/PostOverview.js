@@ -17,7 +17,7 @@ function PostOverview({route}){
             
 
             <TouchableOpacity style={{backgroundColor: '#000', padding: 10, justifyContent: 'center'}} onPress={() => sheet.open()}>
-                <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>Sent complain</Text>
+                <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>{t("post_overview:send_comp")}</Text>
             </TouchableOpacity>
             <RBSheet
                 ref={ref => {
@@ -32,21 +32,21 @@ function PostOverview({route}){
                     }
                 }}
             >
-                <Text style={{color: '#000', alignSelf: 'center', fontSize: 18, margin: 10}}>Choose one of the following complains:</Text>
+                <Text style={{color: '#000', alignSelf: 'center', fontSize: 18, margin: 10}}>{t("post_overview:choose")}</Text>
                 <TouchableOpacity style={styles.complain} onPress={() => { Alert.alert('Complain',message); sheet.close()}}>
-                    <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>Spam or Fake content</Text>
+                    <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>{t("post_overview:spam")}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.complain} onPress={() => { Alert.alert('Complain',message); sheet.close()}}>
-                    <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>Aggressive actions or intimidation</Text>
+                    <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>{t("post_overview:aggressive")}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.complain} onPress={() => { Alert.alert('Complain',message); sheet.close()}}>
-                    <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>Sexual content</Text>
+                    <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>{t("post_overview:sexual")}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.complain} onPress={() => { Alert.alert('Complain',message); sheet.close()}}>
-                    <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>Violation of my rights</Text>
+                    <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>{t("post_overview:violation")}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.complain} onPress={() => { Alert.alert('Complain',message); sheet.close()}}>
-                    <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>Hateful and offensive content</Text>
+                    <Text style={{color: '#fff', alignSelf: 'center', fontSize: 16}}>{t("post_overview:hateful")}</Text>
                 </TouchableOpacity>
             </RBSheet>
             <Image style={styles.image} source={{uri: `${item.photoURL}`}}/>

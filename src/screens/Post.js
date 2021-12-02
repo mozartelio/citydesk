@@ -207,12 +207,12 @@ function Post({navigation}){
                         }}
                     >
                         <Picker.Item value='' label={`${t('post:choose_responsible')}`} />
-                        <Picker.Item label={'Správa mestskej zelene v Košiciach'} value="61a691bb995723164217eedd" />
-                        <Picker.Item label={'Dopravný podnik mesta Košice, a.s.'} value="61a6927d35a0b6cb15e4cf80" />
-                        <Picker.Item label={'Mestské lesy Košice, a.s.'} value="61a6927d35a0b6cb15e4cf7f" />
-                        <Picker.Item label={'SPP'} value="61a6927d35a0b6cb15e4cf82" />
-                        <Picker.Item label={'Východoslovenská vodárenská spoločnosť, a.s.'} value="61a6927d35a0b6cb15e4cf81" />
-                        <Picker.Item label={'Ja neviem'} value="61a762fa518121cf0cb8f921" />
+                        <Picker.Item label={t('post:zelene')} value="61a691bb995723164217eedd" />
+                        <Picker.Item label={t("post:dopravny_podnik")} value="61a6927d35a0b6cb15e4cf80" />
+                        <Picker.Item label={t("post:lesy")} value="61a6927d35a0b6cb15e4cf7f" />
+                        <Picker.Item label={t("post:spp")} value="61a6927d35a0b6cb15e4cf82" />
+                        <Picker.Item label={t("post:vodarenska")} value="61a6927d35a0b6cb15e4cf81" />
+                        <Picker.Item label={t("post:dontknow")} value="61a762fa518121cf0cb8f921" />
                     </Picker>
 
                     <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
@@ -229,7 +229,7 @@ function Post({navigation}){
                     </TouchableOpacity>
 
                     <TouchableOpacity style={{...styles.panelButton, marginTop: 30}} onPress={() => post()}>
-                        <Text style={styles.panelButtonTitle}>Post</Text>
+                        <Text style={styles.panelButtonTitle}>{t("post:post")}</Text>
                     </TouchableOpacity>
                 </ScrollView>
 
