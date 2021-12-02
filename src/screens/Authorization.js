@@ -134,8 +134,8 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginLeft: "10%"
     },logo: {
-        width: "85%",
-        height: "68%",
+        width: 400,
+        height: 400,
         marginBottom: "35%"
     }
 });

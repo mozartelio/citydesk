@@ -136,7 +136,7 @@ function Post({navigation}){
             let location = postCoord == null ? coord : postCoord;
             const requestOptions = {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', apiaccsesskey: "QPOM48rfg873cdsTCY78as7xg" },
                 body: JSON.stringify({
                     title: title,
                     context: context,
