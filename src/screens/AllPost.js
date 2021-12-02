@@ -62,7 +62,7 @@ function AllPost({navigation}){
         let posts = []
         for(let i=0; i<data.list.length; i++){
             posts.push(
-                <Pressable key={`key_${data.list[i]._id}`} onPress={() => navigation.navigate('PostOverview', {item: data.list[i]})}>
+                <Pressable style={{marginBottom: i == data.list.length-1 ? 30 : 0}} key={`key_${data.list[i]._id}`} onPress={() => navigation.navigate('PostOverview', {item: data.list[i]})}>
                     <View style={styles.container}>
                         <Text style={styles.header}>{data.list[i].title}</Text>
                         <Image style={styles.image} source={{uri: `${data.list[i].photoURL}`}}/>
@@ -77,7 +77,7 @@ function AllPost({navigation}){
         )
     }
     return(
-        <ScrollView>
+        <ScrollView style={{paddingTop: 20}}>
             {posts()}
         </ScrollView>
     )
@@ -86,30 +86,32 @@ function AllPost({navigation}){
 
 const styles = StyleSheet.create({
     container: {
-        borderWidth: 0.2
+        margin: 15,
+        padding: 15,
+        backgroundColor: "#fff",
+        elevation: 7,
+        borderRadius: 10
     },
     image: {
         width: '100%',
         height: 300,
         borderColor: '#000',
-        borderWidth: 0.5
+        borderRadius: 10
     },
     header: {
         fontWeight: 'bold',
         fontSize: 20,
-        padding: 12,
-        marginLeft: "3%",
+        paddingVertical: 12,
         color: '#000'
     },
     text: {
         fontSize: 18,
-        padding: 8,
+        paddingVertical: 8,
         color: '#000'
     },
     extraInfo: {
         fontSize: 14,
         fontWeight: 'bold',
-        paddingLeft: 8,
         paddingBottom: 18,
         color: '#000'
     }
