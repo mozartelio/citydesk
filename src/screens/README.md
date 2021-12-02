@@ -28,5 +28,5 @@ Exept it, in future it will be possible to add some notifications for companies 
 ## IS - the fault and breakdown notification application
 ## WHICH - send notifications about breakdowns to responsible structures
 ## COMPARING - to nothing
-## IT - makes the sloving of the problem faster, what even can save somebodys live
+## IT - makes the sloving of the problem faster, what can even save somebodys LIVE
 
