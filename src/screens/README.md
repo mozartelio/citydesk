@@ -1,9 +1,9 @@
-## Fault notification application
+# Fault notification application
 
-# Inspiration
+## Inspiration
 We want to make city better and more comfortable for all it's owners. 
 
-# What it does
+## What it does
 Could happen that we see broken electrical links or other breakdowns which are not fixing for several days. Perhaps company responsible for it even don't knews nothing about this accident. 
 Thanks to CytyDesk app we can put it on public overview and make problem fixing more faster, just making some photo  posting it in our app having marked it on the map.
 
@@ -22,11 +22,11 @@ Exept it, in future it will be possible to add some notifications for companies 
 - Add new features to interface;
 - Find sponsors and run CytyDesk globaly.
 
-# FOR - people
-# WHO - love their cyty and want to make it better place for living
-# THE - CityDesk
-# IS - the fault and breakdown notification application
-# WHICH - send notifications about breakdowns to responsible structures
-# COMPARING - to nothing
-# IT - makes the sloving of the problem faster, what even can save somebodys live
+## FOR - people
+## WHO - love their cyty and want to make it better place for living
+## THE - CityDesk
+## IS - the fault and breakdown notification application
+## WHICH - send notifications about breakdowns to responsible structures
+## COMPARING - to nothing
+## IT - makes the sloving of the problem faster, what even can save somebodys live
 
