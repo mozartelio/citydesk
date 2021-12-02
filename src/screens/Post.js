@@ -5,7 +5,7 @@ import {
     StyleSheet,
     TextInput,
     TouchableOpacity,
-     Alert, AppRegistry,
+    Alert, AppRegistry, ScrollView,
 } from "react-native";
 import {useTranslation} from "react-i18next";
 import BottomSheet from 'reanimated-bottom-sheet';
@@ -177,60 +177,61 @@ function Post({navigation}){
     return(
         <View >
             <View style={styles.container}>
-                <TextInput
-                    ref={input => { setTitleRef(input)  }}
-                    onChangeText={text => setTitle(text) }
-                    placeholder={t('post:topic')}
-                    multiline={true}
-                    maxLength={35}
-                    style={styles.topicInput}
-                >
-                </TextInput>
-                <TextInput
-                    ref={input => { setContextRef(input)  }}
-                    placeholder={t('post:description')}
-                    multiline={true}
-                    onChangeText={text => setContext(text)}
-                    numberOfLines={10}
-                    maxLength={500}
-                    style={styles.descriptionInput}
-                >
-                </TextInput>
+                <ScrollView>
+                    <TextInput
+                        ref={input => { setTitleRef(input)  }}
+                        onChangeText={text => setTitle(text) }
+                        placeholder={t('post:topic')}
+                        multiline={true}
+                        maxLength={35}
+                        style={styles.topicInput}
+                    >
+                    </TextInput>
+                    <TextInput
+                        ref={input => { setContextRef(input)  }}
+                        placeholder={t('post:description')}
+                        multiline={true}
+                        onChangeText={text => setContext(text)}
+                        numberOfLines={10}
+                        maxLength={500}
+                        style={styles.descriptionInput}
+                    >
+                    </TextInput>
 
-                <Picker
-                    style={{ width: "100%" }}
-                    selectedValue={responsible}
-                    onValueChange={(val) => {
-                        setResponsible(val)
+                    <Picker
+                        style={{ width: "100%" }}
+                        selectedValue={responsible}
+                        onValueChange={(val) => {
+                            setResponsible(val)
 
-                    }}
-                >
-                    <Picker.Item value='' label={`${t('post:choose_responsible')}`} />
-                    <Picker.Item label={'Správa mestskej zelene v Košiciach'} value="61a691bb995723164217eedd" />
-                    <Picker.Item label={'Dopravný podnik mesta Košice, a.s.'} value="61a6927d35a0b6cb15e4cf80" />
-                    <Picker.Item label={'Mestské lesy Košice, a.s.'} value="61a6927d35a0b6cb15e4cf7f" />
-                    <Picker.Item label={'SPP'} value="61a6927d35a0b6cb15e4cf82" />
-                    <Picker.Item label={'Východoslovenská vodárenská spoločnosť, a.s.'} value="61a6927d35a0b6cb15e4cf81" />
-                    <Picker.Item label={'Ja neviem'} value="61a762fa518121cf0cb8f921" />
-                </Picker>
+                        }}
+                    >
+                        <Picker.Item value='' label={`${t('post:choose_responsible')}`} />
+                        <Picker.Item label={'Správa mestskej zelene v Košiciach'} value="61a691bb995723164217eedd" />
+                        <Picker.Item label={'Dopravný podnik mesta Košice, a.s.'} value="61a6927d35a0b6cb15e4cf80" />
+                        <Picker.Item label={'Mestské lesy Košice, a.s.'} value="61a6927d35a0b6cb15e4cf7f" />
+                        <Picker.Item label={'SPP'} value="61a6927d35a0b6cb15e4cf82" />
+                        <Picker.Item label={'Východoslovenská vodárenská spoločnosť, a.s.'} value="61a6927d35a0b6cb15e4cf81" />
+                        <Picker.Item label={'Ja neviem'} value="61a762fa518121cf0cb8f921" />
+                    </Picker>
 
-                <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
-                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end', marginTop: 20}}>
-                        <Text style={{fontSize: 18}}>{image==null ? t('post:att_image') : 'Image was added'} </Text>
-                        <Icon name="image" size={30} color="#4b524b" />
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('PostOnMap')}>
-                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end', marginTop: 20}}>
-                        <Text style={{fontSize: 18}}>lat: {postCoord!=null ? postCoord[0] : coord[0]}{'\n'}lon: {postCoord!=null  ? postCoord[1] : coord[1]} </Text>
-                        <Icon name="location" size={30} color="#4b524b" />
-                    </View>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
+                        <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end', marginTop: 20}}>
+                            <Text style={{fontSize: 18}}>{image==null ? t('post:att_image') : 'Image was added'} </Text>
+                            <Icon name="image" size={30} color="#4b524b" />
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('PostOnMap')}>
+                        <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignContent: 'flex-end', marginTop: 20}}>
+                            <Text style={{fontSize: 18}}>lat: {postCoord!=null ? postCoord[0] : coord[0]}{'\n'}lon: {postCoord!=null  ? postCoord[1] : coord[1]} </Text>
+                            <Icon name="location" size={30} color="#4b524b" />
+                        </View>
+                    </TouchableOpacity>
 
-                <TouchableOpacity style={{...styles.panelButton, marginTop: 30}} onPress={() => post()}>
-                    <Text style={styles.panelButtonTitle}>Post</Text>
-                </TouchableOpacity>
-
+                    <TouchableOpacity style={{...styles.panelButton, marginTop: 30}} onPress={() => post()}>
+                        <Text style={styles.panelButtonTitle}>Post</Text>
+                    </TouchableOpacity>
+                </ScrollView>
 
             </View>
             <BottomSheet
