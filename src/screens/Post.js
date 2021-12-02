@@ -40,32 +40,13 @@ function Post({navigation}){
     const [title, setTitle] = useState(' ');
     const [context, setContext] = useState(' ');
 
-    const [height,setHeight]=useState(styles.topicInput.height);
-    const[usedLines,setUsedLines]=useState(1);
-    const[maxHeaderLength, setMaxHeaderLength]=useState(20);
-    function _onLayout(e) {
-        console.log('e', e.nativeEvent.layout.height);
-        // the height increased therefore we also increase the usedLine counter
-        if (height < e.nativeEvent.layout.height) {
-            setUsedLines(usedLines+1);
-        }
-        // the height decreased, we subtract a line from the line counter
-        if (height > e.nativeEvent.layout.height){
-            setUsedLines(usedLines-1);
-        }
-        // update height if necessary
-        if (height !== e.nativeEvent.layout.height){
-            setHeight(e.nativeEvent.layout.height)
-        }
-
-    }
 
     const takePhotoFromCamera = () => {
         ImagePicker.openCamera({
-            compressImageMaxWidth: 300,
-            compressImageMaxHeight: 300,
+            // compressImageMaxWidth: 800,
+            // compressImageMaxHeight: 800,
             cropping: true,
-            // compressImageQuality: 0.7
+
         }).then(image => {
             console.log(image);
             setImage(image.path);
@@ -84,10 +65,9 @@ function Post({navigation}){
 
     const choosePhotoFromLibrary = () => {
         ImagePicker.openPicker({
-            width: 300,
-            height: 300,
+            // width: 800,
+            // height: 800,
             cropping: true,
-            compressImageQuality: 0.7
         }).then(image => {
             console.log(image);
             setImage(image.path);
