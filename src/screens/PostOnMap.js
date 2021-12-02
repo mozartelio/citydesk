@@ -4,6 +4,7 @@ import {useTranslation} from "react-i18next";
 import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {useDispatch, useSelector} from "react-redux";
 import {actionPostCoord} from "../redux/actionCreator";
+import mapStyle from "./../components/mapStyle.json";
 
 
 function PostOnMap({navigation}){
@@ -26,6 +27,7 @@ function PostOnMap({navigation}){
                 provider={PROVIDER_GOOGLE}
                 style={styles.map}
                 mapType={'standard'}
+                customMapStyle={mapStyle}
                 showsUserLocation={true}
                 showsMyLocationButton={true}
                 showsCompass={true}
@@ -38,6 +40,8 @@ function PostOnMap({navigation}){
             >
                 <Marker
                     coordinate={{latitude: postCoord ? postCoord[0] : coord[0], longitude: postCoord ? postCoord[1] : coord[1]}}
+                    image={require('./../assets/icons/img/marker.png')}
+
                 >
                     <Callout>
                         <Text>{'Your post location'}</Text>

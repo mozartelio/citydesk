@@ -18,7 +18,7 @@ function AllPost({navigation}){
     useEffect(() => {
         setInterval(() => {
             updateData();
-        }, 3000);
+        }, 5000);
     }, [])
 
     async function updateData() {
