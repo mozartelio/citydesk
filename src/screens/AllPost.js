@@ -18,12 +18,11 @@ function AllPost({navigation}){
     useEffect(() => {
         setInterval(() => {
             updateData();
-        }, 5000);
+        }, 3000);
     }, [])
 
     async function updateData() {
         const GET_UNSLOVED_PROBLEMS = 'https://hackathon-citydesk.herokuapp.com/';
-        // console.log('---',filter)
         let list = null;
         try {
             const response = await fetch(filter == 'unsolved' ? GET_UNSLOVED_PROBLEMS+'getAllUnsolvedProblems' : GET_UNSLOVED_PROBLEMS + 'getAllSolvedProblems');
@@ -57,7 +56,7 @@ function AllPost({navigation}){
         let posts = []
         for(let i=0; i<data.list.length; i++){
             posts.push(
-                <Pressable onPress={() => navigation.navigate('PostOverview', {item: data.list[i]})}>
+                <Pressable key={`key_${data.list[i]._id}`} onPress={() => navigation.navigate('PostOverview', {item: data.list[i]})}>
                     <View style={styles.container}>
                         <Text style={styles.header}>{data.list[i].title}</Text>
                         <Image style={styles.image} source={{uri: `${data.list[i].photoURL}`}}/>
