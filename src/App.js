@@ -14,20 +14,16 @@ import Profile from "./screens/Profile";
 import Post from "./screens/Post";
 import Map from "./screens/Map";
 import { useTranslation } from "react-i18next";
-import {filters, profile} from "./assets/icons";
 import PostOverview from "./screens/PostOverview";
 import Authorization from "./screens/Authorization";
 import PostOnMap from "./screens/PostOnMap";
-import Icon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome5";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
-import {Picker} from "@react-native-picker/picker";
 import AllPost from "./screens/AllPost";
-import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-//Logbox.ignoreLogs
+
 function Home({ navigation }){
     const {t} = useTranslation();
     const dispatch = useDispatch();

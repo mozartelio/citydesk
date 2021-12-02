@@ -7,7 +7,6 @@ import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 
 function AllPost({navigation}){
-    const {t} = useTranslation()
     const [data, setData] = useState(null);
     const filter = useSelector((state)=> state.filter);
 
