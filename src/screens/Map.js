@@ -5,7 +5,7 @@ import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Carousel from 'react-native-snap-carousel'
 import {useSelector} from "react-redux";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
-
+const mapStyle = require('./../components/mapStyle.json')
 
 
 function Map({navigation}){
@@ -30,7 +30,7 @@ function Map({navigation}){
     useEffect(() => {
         setInterval(() => {
             updateData();
-        }, 3000);
+        }, 5000);
     }, [])
 
     const onMarkerPress = (item, index) => {
@@ -113,6 +113,7 @@ function Map({navigation}){
                 style={styles.map}
                 ref = {m => setMap(m)}
                 mapType={'standard'}
+                customMapStyle={mapStyle}
                 showsUserLocation={true}
                 showsMyLocationButton={true}
                 showsCompass={true}
@@ -126,6 +127,7 @@ function Map({navigation}){
                             ref={ref => data.markers[index] = ref}
                             coordinate={{latitude: item.latitude, longitude: item.longitude}}
                             onPress={() => onMarkerPress(item, index)}
+                            image={require('./../assets/icons/img/marker.png')}
                         >
                             <Callout>
                                 <Text>{item.title}</Text>
