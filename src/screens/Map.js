@@ -163,10 +163,10 @@ const styles = StyleSheet.create({
     },carousel: {
         position: 'absolute',
         bottom: 0,
-        marginBottom: 10
+        marginBottom: 10,
     },
     cardContainer: {
-        backgroundColor: 'rgba(0, 0, 0, 0.75)',
+        backgroundColor: "#2d333e",
         height: 200,
         width: 300,
         padding: 3,
