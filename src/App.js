@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet, Pressable} from "react-native";
+import {Text, View, StyleSheet, Pressable,LogBox } from "react-native";
 import store from "./redux/store";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -27,7 +27,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
+//Logbox.ignoreLogs
 function Home({ navigation }){
     const {t} = useTranslation();
     const dispatch = useDispatch();
@@ -85,7 +85,7 @@ function Home({ navigation }){
                       <MaterialIcons name="post-add" size={size} color={color}/>
                     );
                   }
-                  else if (route.name === 'AllPosts') {
+                  else if (route.name === 'Home') {
                     return (
                       <MaterialIcons name="list-alt" size={size} color={color}/>
                     );
@@ -143,6 +143,10 @@ function Home({ navigation }){
 
 function App (){
     const {t} = useTranslation();
+
+    //TODO:remove this statement later
+    LogBox.ignoreAllLogs();
+
 
     return (
       <Provider store={store}>
