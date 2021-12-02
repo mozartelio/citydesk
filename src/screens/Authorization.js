@@ -46,6 +46,7 @@ function Authorization({navigation}) {
 
     async function authUser(user) {
         console.log('authUser')
+
         if(!user) {
             console.log('cant get user')
             return null;
@@ -53,12 +54,14 @@ function Authorization({navigation}) {
 
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+
+            headers: { 'Content-Type': 'application/json', apiaccsesskey: "QPOM48rfg873cdsTCY78as7xg" },
             body: JSON.stringify({
                 id: user.uid,
                 name: user.displayName,
                 email: user.email,
-                photoURL: user.photoURL
+                photoURL: user.photoURL,
+
             })
         };
         console.log('data', requestOptions)

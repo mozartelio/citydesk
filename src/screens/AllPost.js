@@ -22,15 +22,21 @@ function AllPost({navigation}){
     }, [])
 
     async function updateData() {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+                apiaccsesskey: "QPOM48rfg873cdsTCY78as7xg"
+            }
+        }
         const GET_UNSLOVED_PROBLEMS = 'https://hackathon-citydesk.herokuapp.com/';
         let list = null;
         try {
-            const response = await fetch(filter == 'unsolved' ? GET_UNSLOVED_PROBLEMS+'getAllUnsolvedProblems' : GET_UNSLOVED_PROBLEMS + 'getAllSolvedProblems');
+            const response = await fetch(filter == 'unsolved' ? GET_UNSLOVED_PROBLEMS+'getAllUnsolvedProblems' : GET_UNSLOVED_PROBLEMS + 'getAllSolvedProblems', requestOptions);
             if(response.status === 200 ) {
                 list = await response.json();
                 list.map(async (item, index) =>{
-                    const user_response = await fetch(`https://hackathon-citydesk.herokuapp.com/getUser/${item.authorID}`);
-                    const org_response = await fetch(`https://hackathon-citydesk.herokuapp.com/getOrganization/${item.responsibleOrganizations[0]}`);
+                    const user_response = await fetch(`https://hackathon-citydesk.herokuapp.com/getUser/${item.authorID}`, requestOptions);
+                    const org_response = await fetch(`https://hackathon-citydesk.herokuapp.com/getOrganization/${item.responsibleOrganizations[0]}`, requestOptions);
                     if(user_response.status === 200 && org_response.status == 200) {
                         let user = await user_response.json();
                         let org = await org_response.json();

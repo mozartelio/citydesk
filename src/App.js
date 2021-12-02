@@ -85,7 +85,7 @@ function Home({ navigation }){
                       <MaterialIcons name="post-add" size={size} color={color}/>
                     );
                   }
-                  else if (route.name === 'Home') {
+                  else if (route.name === 'AllPosts') {
                     return (
                       <MaterialIcons name="list-alt" size={size} color={color}/>
                     );

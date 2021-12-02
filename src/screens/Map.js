@@ -71,9 +71,11 @@ function Map({navigation}){
 
 
         const GET_UNSLOVED_PROBLEMS = 'https://hackathon-citydesk.herokuapp.com/';
-        const requestOption = {
+        const requestOptions = {
             method: 'GET',
-            headers: {'Content-Type': 'application.json'}
+            headers: { 'Content-Type': 'application/json',
+                apiaccsesskey: "QPOM48rfg873cdsTCY78as7xg"
+            }
         }
         let list = null;
         try {
