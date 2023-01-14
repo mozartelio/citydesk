@@ -1,5 +1,6 @@
 # Fault notification application
-YouTube: https://www.youtube.com/watch?v=yM8RzpkCWg4
+[YouTube video]( https://www.youtube.com/watch?v=yM8RzpkCWg4)
+[Devpost link]( https://devpost.com/software/way-of-memories)
 
 ## Inspiration
 We want to make city better and more comfortable for all it's owners. 
@@ -14,7 +15,18 @@ Also such methode of informating will help to identify damage after some hurrica
 
 Exept it, in future it will be possible to add some notifications for companies or govermental departments which are responsable for some city areas like transportation, electricity or roadside and when people will post about some crashes or brokens - companies themselves will get notification about such problems on email.
 
+![image](https://user-images.githubusercontent.com/60364483/212444521-72bf4938-27ae-4c1a-8162-3bcef8c850f9.png)
+![image](https://user-images.githubusercontent.com/60364483/212444530-f9560a9e-f5c2-46d0-a857-4bd27b2206c9.png)
+![image](https://user-images.githubusercontent.com/60364483/212444537-877dddb8-b4e0-46be-af76-a52a12c9576e.png)
+![image](https://user-images.githubusercontent.com/60364483/212444554-372580dc-be63-4d74-827d-1f4ac80c1fe7.png)
+![image](https://user-images.githubusercontent.com/60364483/212444555-9c3b16e8-c79f-4bf3-95ef-2efa7c850056.png)
 
+## Authors
+- Mozenbakh Anton
+- Kagirov Dmytro
+- Kashytskyi Oleksandr
+- Naumenko Artem
+- Tsimbolynets Vitalii
 
 ## What's next for CityDesk
 
