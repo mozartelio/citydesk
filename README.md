@@ -1,26 +1,31 @@
-# Fault notification application
-[YouTube video]( https://www.youtube.com/watch?v=yM8RzpkCWg4)
+# Fault notification Android application
+The application was made as a hackathon project: [Devpost link]( https://devpost.com/software/citydesk)
 
-[Devpost link]( https://devpost.com/software/way-of-memories)
+## Video
+<a href="https://www.youtube.com/watch?v=yM8RzpkCWg4" target="_blank">![Watch the video](/readme_images/video.png)</a>
 
 ## Inspiration
 We want to make city better and more comfortable for all it's owners. 
 
 ## What it does
-Could happen that we see broken electrical links or other breakdowns which are not fixing for several days. Perhaps company responsible for it even don't knews nothing about this accident. 
-Thanks to CytyDesk app we can put it on public overview and make problem fixing more faster, just making some photo  posting it in our app having marked it on the map.
+It can happen that we encounter broken electrical connections or other breakdowns that go unfixed for several days. Perhaps the company responsible for them doesn’t even know about these incidents.
+Thanks to the CityDesk app, we can bring these issues to public attention and expedite their resolution by simply taking a photo, posting it in our app, and marking it on the map.
 
-All posts about breakdowns will be shown on the map and people could observe the problem sloving from their devices.
+All posts about breakdowns will be displayed on the map, allowing people to monitor the problem-solving process from their devices.
 
-Also such methode of informating will help to identify damage after some hurricanes or storms (broken trees, bus stops etc) and also it will give understanding of how huge the problem is.
+Additionally, this method of reporting will help identify damage after hurricanes or storms (such as broken trees and bus stops) and provide insight into the scale of the problem.
 
-Exept it, in future it will be possible to add some notifications for companies or govermental departments which are responsable for some city areas like transportation, electricity or roadside and when people will post about some crashes or brokens - companies themselves will get notification about such problems on email.
+Furthermore, in the future, it will be possible to add notifications for companies or government departments responsible for various city services, such as transportation, electricity, or roadside maintenance. When people report accidents or breakdowns, these organizations will receive notifications about such issues via email.
 
-![image](https://user-images.githubusercontent.com/60364483/212444521-72bf4938-27ae-4c1a-8162-3bcef8c850f9.png)
-![image](https://user-images.githubusercontent.com/60364483/212444530-f9560a9e-f5c2-46d0-a857-4bd27b2206c9.png)
-![image](https://user-images.githubusercontent.com/60364483/212444537-877dddb8-b4e0-46be-af76-a52a12c9576e.png)
-![image](https://user-images.githubusercontent.com/60364483/212444554-372580dc-be63-4d74-827d-1f4ac80c1fe7.png)
-![image](https://user-images.githubusercontent.com/60364483/212444555-9c3b16e8-c79f-4bf3-95ef-2efa7c850056.png)
+
+<p float="left">
+  <img src="readme_images/main_page.jpg" width="200" />
+  <img src="readme_images/adding_post.jpg" width="200" />
+  <img src="readme_images/user.jpg" width="200" />
+  <img src="readme_images/problems_map.jpg" width="200" />
+  <img src="readme_images/problem.jpg" width="200" />
+</p>
+
 
 ## Authors
 - Mozenbakh Anton
@@ -34,7 +39,7 @@ Exept it, in future it will be possible to add some notifications for companies 
 - Update main functionality of the project;
 - Add global scaling for CityDesk;
 - Add new features to interface;
-- Find sponsors and run CytyDesk globaly.
+- Find sponsors and run CityDesk globally.
 
 ## FOR - people
 ## WHO - love their city and want to make it better place for living
@@ -42,5 +47,5 @@ Exept it, in future it will be possible to add some notifications for companies 
 ## IS - the fault and breakdown notification application
 ## WHICH - send notifications about breakdowns to responsible structures
 ## COMPARING - to nothing
-## IT - makes the sloving of the problem faster, what can even save somebodys LIVE
+## IT - makes the solving of the problem faster, what can even save somebody's LIVE
 
